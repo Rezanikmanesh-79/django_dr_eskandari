@@ -1,5 +1,5 @@
 services:
-  side_project:
+  week-0:
     build: .
     ports:
       - "8000:8000"
