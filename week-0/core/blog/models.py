@@ -1,4 +1,5 @@
 from django.db import models
+from django_jalali.db import models as jmodels
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -28,9 +29,9 @@ class Post (models.Model):
     title = models.CharField(max_length=50,verbose_name="عنوان")
     content = models.TextField()
     slug = models.SlugField(unique=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    publish = models.DateTimeField(default=timezone.now)
+    created = jmodels.jDateTimeField(auto_now_add=True)
+    updated_at = jmodels.jDateTimeField(auto_now=True)
+    publish = jmodels.jDateTimeField(default=timezone.now)
     # related_name take all of targeted user post
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_posts',verbose_name="نویسنده")
 

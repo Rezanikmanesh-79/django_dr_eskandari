@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # my apps 
     "blog",
+    # third-party apps
+    "django_jalali",
 ]
 
 MIDDLEWARE = [
@@ -105,7 +107,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+# LANGUAGE_CODE = "en-us"
+# Changing the admin panel language to Farsi (Persian), 
+# but it does not recognize your field names (e.g. verbose_name).
+LANGUAGE_CODE = "fa-ir"
+# pip install django-jalali
 
 TIME_ZONE = "Asia/Tehran"
 
