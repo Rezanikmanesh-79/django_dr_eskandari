@@ -1,6 +1,6 @@
 from django.contrib import admin
 from blog.models import Post
-
+from django_jalali.admin.filters import JDateFieldListFilter
 admin.site.site_header = "پنل مدیریت جنگو"
 admin.site.site_title = "پنل مدیریت وبلاگ"
 admin.site.index_title = "خوش آمدید به پنل مدیریت"
@@ -12,7 +12,8 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'publish', 'status']
     # this ordering will not change data base
     ordering = ['-publish']
-    list_filter = ('status', 'author')
+    list_filter = ('status', 'author',('publish', JDateFieldListFilter))
+    
     search_fields = ('title', 'content')
     # add user id instead of name
     raw_id_fields = ('author', )
