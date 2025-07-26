@@ -24,14 +24,15 @@ class Post (models.Model):
         REJECTED = 'RJ', 'rejected'
 
     status = models.CharField(max_length=10, choices=Status.choices, default=Status.DRAFT)
-    title = models.CharField(max_length=50)
+    # Singular name for the model in the admin panel
+    title = models.CharField(max_length=50,verbose_name="عنوان")
     content = models.TextField()
     slug = models.SlugField(unique=True)
     created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     publish = models.DateTimeField(default=timezone.now)
     # related_name take all of targeted user post
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_posts')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_posts',verbose_name="نویسنده")
 
     def __str__(self):
         return self.title
@@ -44,4 +45,9 @@ class Post (models.Model):
         ordering = ['-publish']
         # indexing work in django model but have downfall of cpu proses
         indexes = [models.Index(fields=['publish'])]
+
+        # Singular name for the model in the admin panel
+        verbose_name = "پست"
+        # Plural name for the model in the admin panel
+        verbose_name_plural = "پست ها"
 # with __ you can access your class method exp: p= Post.objects.filter(author__first_name="reza")

@@ -19,6 +19,6 @@ def post_detail(request, pk):
     # except:
     #     return HttpResponse('post dose not exist')
     
-    post=get_object_or_404(Post, pk=pk)
+    post = get_object_or_404(Post, pk=pk, status=Post.Status.PUBLISHED)
     context = {"post":post}
     return render(request, template_name='blog/post-detail.html', context=context)

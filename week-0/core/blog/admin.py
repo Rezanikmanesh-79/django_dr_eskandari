@@ -1,6 +1,10 @@
 from django.contrib import admin
 from blog.models import Post
 
+admin.site.site_header = "پنل مدیریت جنگو"
+admin.site.site_title = "پنل مدیریت وبلاگ"
+admin.site.index_title = "خوش آمدید به پنل مدیریت"
+
 
 # admin.site.register(Post)
 @admin.register(Post)
