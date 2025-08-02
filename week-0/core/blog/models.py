@@ -2,6 +2,7 @@ from django.db import models
 from django_jalali.db import models as jmodels
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 '''
 most imported data base command 
@@ -34,7 +35,10 @@ class Post (models.Model):
     publish = jmodels.jDateTimeField(default=timezone.now)
     # related_name take all of targeted user post
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_posts',verbose_name="نویسنده")
-
+    # over writing the post class urls for dynamic url
+    def get_absolute_url(self):
+        return reverse('blog:post-detail',args=[self.id])
+    
     def __str__(self):
         return self.title
 

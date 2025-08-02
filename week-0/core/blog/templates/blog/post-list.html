@@ -7,7 +7,8 @@
 {% block content %}  
         <h1>Post list</h1>
         {% for post in posts %}
-                <a href="{% url 'blog:post-detail' post.id %}">{{ post.title }}</a>
+                {% comment %} whit {{post.get_absolute_url}} we call the method that we over wried {% endcomment %}
+                <a href="{{post.get_absolute_url}}">{{ post.title }}</a>
 
                 <p>{{post.content | truncatewords:5}}</p>
                 <br>

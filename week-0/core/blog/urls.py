@@ -1,6 +1,6 @@
 from django.urls import path
 from blog import views
-
+# canonical url is direct adders exp :www.example.com/iphone-16
 # from any ware we can access this file exp: (blog:) cuz of app name
 app_name = 'blog'
 
