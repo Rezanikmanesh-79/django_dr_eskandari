@@ -1,16 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>
-        {% comment %} {%block title%}{% endblock %} uniq title and make inheritance posable{% endcomment %}
-        {%block title%}{% endblock %} 
-    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} {%block title%}{% endblock %} uniq title and make inheritance posable{% endcomment %}
+    <title>{% block title %}وبلاگ من{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
     {% comment %} using inheritance for partials dir {% endcomment %}
     {% include 'partials/header.html' %}
     {% include 'partials/navigation.html' %}
-    {% block  content%}{% endblock  %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
     {% include 'partials/footer.html' %}
+
+    {% include 'partials/pagination.html' %}
+
+    
 </body>
 {% comment %} you can filter withe | {% endcomment %}
 {% comment %} for using tag{% tag %} {% endcomment %}
 {% comment %} for loading static like picture use {% load static %} it's use static dir in app dir{% endcomment %}
+</html>

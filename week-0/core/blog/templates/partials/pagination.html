@@ -1,0 +1,9 @@
+{% if posts.has_previous %}
+    <a href="?page={{ posts.previous_page_number }}">قبلی</a>
+{% endif %}
+
+<span>صفحه {{ posts.number }} از {{ posts.paginator.num_pages }}</span>
+
+{% if posts.has_next %}
+    <a href="?page={{ posts.next_page_number }}">بعدی</a>
+{% endif %}
