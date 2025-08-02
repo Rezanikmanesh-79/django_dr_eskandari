@@ -1,4 +1,6 @@
 {% extends 'parent/base.html' %}
+{% comment %} importing jalaliformat {% endcomment %}
+{% load jformat %}
 {% block title %}
     Post Detail
 {% endblock title %}
@@ -8,4 +10,7 @@
     <p>{{post.content|linebreaks}} </p>
     <br>
     {{post.publish}}
-{% endblock content %}
+    {% comment %} for adding date and time custom format {% endcomment %}
+    {% comment %} {{new_date|date:"Y:M:D"}} {% endcomment %}
+    {{post.publish|date:"Y/M/D"}}
+    {% endblock content %}

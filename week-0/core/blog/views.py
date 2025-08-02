@@ -1,7 +1,7 @@
 from django.shortcuts import render ,get_object_or_404
 from django.http import HttpResponse
 from blog.models import Post
-
+import datetime
 
 def index(request):
     return HttpResponse("hello ")
@@ -20,5 +20,5 @@ def post_detail(request, pk):
     #     return HttpResponse('post dose not exist')
     
     post = get_object_or_404(Post, pk=pk, status=Post.Status.PUBLISHED)
-    context = {"post":post}
+    context = {"post":post,"new_date": datetime.datetime.now()}
     return render(request, template_name='blog/post-detail.html', context=context)
