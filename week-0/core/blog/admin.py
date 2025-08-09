@@ -1,6 +1,7 @@
 from django.contrib import admin
-from blog.models import Post
+from blog.models import Post,Ticket
 from django_jalali.admin.filters import JDateFieldListFilter
+
 admin.site.site_header = "پنل مدیریت جنگو"
 admin.site.site_title = "پنل مدیریت وبلاگ"
 admin.site.index_title = "خوش آمدید به پنل مدیریت"
@@ -24,3 +25,8 @@ class PostAdmin(admin.ModelAdmin):
     # editing status on main page
     list_editable = ('status',)
     list_display_links = ['title', 'author']
+
+@admin.register(Ticket)
+class TicketAdmin(admin.ModelAdmin):
+    list_display=['name','email','phone','subject','created_at']
+    ordering = ['-created_at']

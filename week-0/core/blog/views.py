@@ -1,8 +1,11 @@
-from django.shortcuts import render ,get_object_or_404
+from django.shortcuts import render ,get_object_or_404 ,redirect
 from django.http import HttpResponse
-from blog.models import Post
+from blog.models import Post,Ticket
 import datetime
 from django.core.paginator import Paginator , EmptyPage ,PageNotAnInteger
+from blog.forms import TicketForm
+
+
 def index(request):
     return HttpResponse("hello ")
 
@@ -32,3 +35,21 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk, status=Post.Status.PUBLISHED)
     context = {"post":post,"new_date": datetime.datetime.now()}
     return render(request, template_name='blog/post-detail.html', context=context)
+
+def ticket(request):
+    if request.method == "POST":
+        form = TicketForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            Ticket.objects.create(
+                message=cd['message'],
+                name=cd['name'],
+                email=cd['email'],
+                phone=cd['phone'],
+                subject=cd['subject']
+            )
+            return redirect('blog:index')
+    else:
+        form = TicketForm()
+
+    return render(request, 'forms/ticket.html', {'form': form})

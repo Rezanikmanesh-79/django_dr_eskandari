@@ -56,3 +56,18 @@ class Post (models.Model):
         # Plural name for the model in the admin panel
         verbose_name_plural = "پست ها"
 # with __ you can access your class method exp: p= Post.objects.filter(author__first_name="reza")
+
+class Ticket(models.Model):
+    message = models.TextField(verbose_name="متن تیکت")
+    name = models.CharField(max_length=50,null=True,blank=True,verbose_name="نام")
+    email = models.EmailField(null=True,blank=True,verbose_name="ایمیل")
+    phone = models.CharField(max_length=11,null=True,blank=True,verbose_name="تلفن")
+    subject = models.CharField(max_length=50,verbose_name="موضوع")
+    created_at=jmodels.jDateTimeField(verbose_name="تاریخ ثبت درخواست",auto_now_add=True)
+    
+    def __str__(self):
+        return self.subject
+
+    class Meta:
+        verbose_name='تیکت'
+        verbose_name_plural='تیکت ها'
