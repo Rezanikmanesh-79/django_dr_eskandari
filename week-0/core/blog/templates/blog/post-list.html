@@ -6,11 +6,15 @@
 {% block title %}post{% endblock title %}
 {% block content %}  
         <h1>Post list</h1>
-        {% for post in posts %}
-                {% comment %} whit {{post.get_absolute_url}} we call the method that we over wried {% endcomment %}
-                <a href="{{post.get_absolute_url}}">{{ post.title }}</a>
+        <ol style="--length: 5" role="list">
 
+        {% for post in posts %}
+ 	        <li style="--i: 1">
+                {% comment %} whit {{post.get_absolute_url}} we call the method that we over wried {% endcomment %}
+                <h3><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h3>
                 <p>{{post.content | truncatewords:5}}</p>
+                </li>
                 <br>
         {% endfor %}
+                </ol>
 {% endblock content %}  
