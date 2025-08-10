@@ -9,7 +9,7 @@
         <ol style="--length: 5" role="list">
 
         {% for post in posts %}
- 	        <li style="--i: 1">
+ 	        <li style="--i: {{post.id}}">
                 {% comment %} whit {{post.get_absolute_url}} we call the method that we over wried {% endcomment %}
                 <h3><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h3>
                 <p>{{post.content | truncatewords:5}}</p>
