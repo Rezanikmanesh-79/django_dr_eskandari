@@ -1,0 +1,18 @@
+{% extends 'parent/base.html' %}
+
+{% block title %}
+    Post Form
+{% endblock title %}
+
+{% block content %}
+    <form method="POST" action="{% url 'blog:comment' post.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="ارسال">
+    </form>
+
+    {% if comment %}
+        <p>دیدگاه شما ارسال شد، در صورت تأیید نمایش داده می‌شود.</p>
+        <a href="{{ post.get_absolute_url }}">برای بازگشت اینجا کلیک کنید</a>
+    {% endif %}
+{% endblock content %}

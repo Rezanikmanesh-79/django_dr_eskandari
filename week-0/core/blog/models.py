@@ -73,6 +73,7 @@ class Ticket(models.Model):
         verbose_name_plural='تیکت ها'
 
 class Comment(models.Model):
+    # with "related_name" we can use "post.comment"
     post=models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comment',verbose_name="کامنت")
     name=models.CharField(max_length=50,verbose_name="نام نویسنده")
     email=models.EmailField(verbose_name="ایمیل")

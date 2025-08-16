@@ -48,3 +48,10 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model=Comment
         fields=('name','email','content')
+
+    def clean_field(self):
+        name=self.changed_data['name']
+        if len(name)>3:
+            return name
+        else:
+            raise forms.ValidationError("نام وارد شده کوتاه است")

@@ -1,16 +1,29 @@
 {% extends 'parent/base.html' %}
-{% comment %} importing jalaliformat {% endcomment %}
 {% load jformat %}
+
 {% block title %}
     Post Detail
 {% endblock title %}
+
 {% block content %}
     <h1>Post Detail</h1>
-    <h2>{{post.title}}by{{post.author}}</h2>
-    <p>{{post.content|linebreaks}} </p>
+    <h2>{{ post.title }} by {{ post.author }}</h2>
+    <p>{{ post.content|linebreaks }}</p>
     <br>
-    {{post.publish}}
-    {% comment %} for adding date and time custom format {% endcomment %}
-    {% comment %} {{new_date|date:"Y:M:D"}} {% endcomment %}
-    {{post.publish|date:"Y/M/D"}}
-    {% endblock content %}
+    {{ post.PUBLISHED|date:"Y/m/d" }}
+
+    <h3>Comments</h3>
+    {% for c in comment %}
+        <p><b>{{ c.name }}</b>: {{ c.content }}</p>
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+
+    {% block post_content %}
+    <form method="POST" action="{% url 'blog:comment' post.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="ارسال">
+    </form>
+    {% endblock post_content %}
+{% endblock content %}

@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from blog.models import Post,Ticket
 import datetime
 from django.core.paginator import Paginator , EmptyPage ,PageNotAnInteger
-from blog.forms import TicketForm
-
+from blog.forms import TicketForm,CommentForm
+from django.views.decorators.http import require_POST
 
 def index(request):
     return HttpResponse("hello ")
@@ -33,7 +33,9 @@ def post_detail(request, pk):
     #     return HttpResponse('post dose not exist')
     
     post = get_object_or_404(Post, pk=pk, status=Post.Status.PUBLISHED)
-    context = {"post":post,"new_date": datetime.datetime.now()}
+    comment=post.comment.filter(is_active=True)
+    form=CommentForm()
+    context = {"post":post,"form":form,'comment':comment}
     return render(request, template_name='blog/post-detail.html', context=context)
 
 def ticket(request):
@@ -53,3 +55,16 @@ def ticket(request):
         form = TicketForm()
 
     return render(request, 'forms/ticket.html', {'form': form})
+# we only access this with post cuz of "require_POST"
+@require_POST
+def post_comment(request,pk):
+    post=get_object_or_404(Post,pk=pk,status=Post.Status.PUBLISHED)
+    comment=None
+    form = CommentForm(request.POST)
+    if form.is_valid():
+# "commit=False" is mean create obj but dont save in database 
+        comment=form.save(commit=False)
+        comment.post=post
+        comment.save()
+    context={'post':post,'comment':comment,'form':form}
+    return render(request,template_name='forms/comment.html',context=context)
