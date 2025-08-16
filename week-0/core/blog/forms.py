@@ -25,7 +25,7 @@ class TicketForm(forms.Form):
     )
     phone = forms.CharField(
         label='تلفن',
-        required=False,
+        required=True,
         max_length=11
     )
     subject = forms.ChoiceField( 
