@@ -1,7 +1,8 @@
 from django import forms
-from blog.models import Ticket
+from blog.models import Ticket,Comment
 
 class TicketForm(forms.Form):
+# for just checking (not using database) we use Forms
     SUBJECT_CHOICES = (
         ('پیشنهاد', 'پیشنهاد'),
         ('گزارش خطا', 'گزارش خطا'),
@@ -41,3 +42,9 @@ class TicketForm(forms.Form):
             return phone
         else:
             raise forms.ValidationError("تلفن بایید عدد صحیح باشد و طول ان یازده رقم باشد")
+
+class CommentForm(forms.ModelForm):
+# in this we work with date base that why we use ModelForm
+    class Meta:
+        model=Comment
+        fields=('name','email','content')
