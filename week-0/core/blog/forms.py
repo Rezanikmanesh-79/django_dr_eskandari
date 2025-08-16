@@ -33,3 +33,11 @@ class TicketForm(forms.Form):
         required=True,
         choices=SUBJECT_CHOICES
     )
+
+    def clean_phone(self):
+        # every input in django save in dict called cleaned_data
+        phone =self.cleaned_data['phone']
+        if phone.isdigit()and len(phone)==11:
+            return phone
+        else:
+            raise forms.ValidationError("تلفن بایید عدد صحیح باشد و طول ان یازده رقم باشد")

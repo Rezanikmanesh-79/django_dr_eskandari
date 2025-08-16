@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Post,Ticket
+from blog.models import Post,Ticket,Comment
 from django_jalali.admin.filters import JDateFieldListFilter
 
 admin.site.site_header = "پنل مدیریت جنگو"
@@ -30,3 +30,11 @@ class PostAdmin(admin.ModelAdmin):
 class TicketAdmin(admin.ModelAdmin):
     list_display=['name','email','phone','subject','created_at']
     ordering = ['-created_at']
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display=['post','name','created_at','is_active']
+    ordering=('-created_at',)
+    list_filter=('is_active',('created_at',JDateFieldListFilter))
+    search_fields=('content','name')
+    list_editable=['is_active']

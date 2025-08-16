@@ -71,3 +71,20 @@ class Ticket(models.Model):
     class Meta:
         verbose_name='تیکت'
         verbose_name_plural='تیکت ها'
+
+class Comment(models.Model):
+    post=models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comment',verbose_name="کامنت")
+    name=models.CharField(max_length=50,verbose_name="نام نویسنده")
+    email=models.EmailField(verbose_name="ایمیل")
+    content=models.TextField(verbose_name="متن دیدگاه")
+    created_at=jmodels.jDateTimeField(auto_now_add=True,verbose_name='ساخته شده در')
+    update_at=jmodels.jDateTimeField(auto_now=True,verbose_name='اپدیت شده در')
+    is_active=models.BooleanField(default=False)
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        ordering=['-created_at']
+        indexes=[models.Index(fields=["-created_at"])]
+        verbose_name="دیدگاه"
+        verbose_name_plural="دیدگاه ها"
