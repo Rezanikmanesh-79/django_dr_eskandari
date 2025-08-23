@@ -44,7 +44,7 @@ class TicketForm(forms.Form):
             raise forms.ValidationError("تلفن بایید عدد صحیح باشد و طول ان یازده رقم باشد")
 
 class CommentForm(forms.ModelForm):
-# in this we work with date base that why we use ModelForm
+# in this case we work with date base that why we use ModelForm
     class Meta:
         model=Comment
         fields=('name','email','content')
