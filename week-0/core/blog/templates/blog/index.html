@@ -1,0 +1,16 @@
+{% extends 'parent/base.html' %}
+{% load blog_tags %}
+{% block title %}
+    my weblog
+{% endblock title %}
+{% block content %}
+{% comment %} <h2>امار</h2>
+<p>{{posts.count}}:پست ها </p>
+<p>{{comment.count}} :تعداد کامنت ها</p>
+<p>{{posts.first.created|date:"y/m/d"}} :تاریخ اخرین پست</p> {% endcomment %}
+<h2>امار</h2>
+<p>{% total_post %}:پست ها </p>
+<p>{%total_comments%} :تعداد کامنت ها</p>
+<p> {% last_post_date %}  :تاریخ اخرین پست</p>
+<p>{%most_popular_post %}</p>
+{% endblock content %}

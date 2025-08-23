@@ -1,6 +1,5 @@
 from django import forms
-from blog.models import Ticket,Comment
-
+from blog.models import Ticket,Comment,Post
 class TicketForm(forms.Form):
 # for just checking (not using database) we use Forms
     SUBJECT_CHOICES = (

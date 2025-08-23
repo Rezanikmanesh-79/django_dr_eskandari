@@ -1,0 +1,11 @@
+{% load jformat %}
+<div class='blog-post'>
+    <h2>
+    اخرین پست های درج شده
+    </h2>
+    {% for post in  posts%}
+        <p>
+        <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+        </p>
+    {% endfor %}
+</div>

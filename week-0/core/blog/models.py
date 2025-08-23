@@ -30,6 +30,7 @@ class Post (models.Model):
     title = models.CharField(max_length=50,verbose_name="عنوان")
     content = models.TextField()
     slug = models.SlugField(unique=True)
+    reading_time=models.PositiveIntegerField(default=5,verbose_name='زمان مطالعه')
     created = jmodels.jDateTimeField(auto_now_add=True)
     updated_at = jmodels.jDateTimeField(auto_now=True)
     publish = jmodels.jDateTimeField(default=timezone.now)

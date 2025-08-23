@@ -1,13 +1,16 @@
 from django.shortcuts import render ,get_object_or_404 ,redirect
 from django.http import HttpResponse
-from blog.models import Post,Ticket
+from blog.models import Post,Ticket,Comment
 import datetime
 from django.core.paginator import Paginator , EmptyPage ,PageNotAnInteger
 from blog.forms import TicketForm,CommentForm
 from django.views.decorators.http import require_POST
 
 def index(request):
-    return HttpResponse("hello ")
+    posts=Post.published.all()
+    comment=Comment
+    context={"posts":posts,"comments":comment}
+    return render (request,template_name='blog/index.html',context=context)
 
 def post_list(request):
     posts = Post.published.all()
