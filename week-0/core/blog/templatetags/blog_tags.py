@@ -5,6 +5,7 @@ from markdown import markdown
 from django.utils.safestring import mark_safe
 register = template.Library()
 
+# simple_tag() is fo one var
 @register.simple_tag()
 def total_post():
     return Post.published.count()
@@ -16,6 +17,7 @@ def total_comments():
 def last_post_date():
     return Post.published.order_by('-created')[0].created
 # we should tell the location in ()
+# we use inclusion_tag when we have list of var
 @register.inclusion_tag('partials/latest-post.html')
 def latest_post(count=5):
     posts=Post.published.order_by('-created')[:count]

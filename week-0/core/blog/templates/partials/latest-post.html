@@ -5,7 +5,7 @@
     </h2>
     {% for post in  posts%}
         <p>
-        <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+        <a href="{{post.get_absolute_url}}">{{post.title}}:{{post.publish|jformat:'%Y-%m-%d %H:%M'}}</a>
         </p>
     {% endfor %}
 </div>

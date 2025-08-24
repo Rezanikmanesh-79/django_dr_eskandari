@@ -7,10 +7,11 @@ from blog.forms import TicketForm,CommentForm
 from django.views.decorators.http import require_POST
 
 def index(request):
-    posts=Post.published.all()
-    comment=Comment
-    context={"posts":posts,"comments":comment}
-    return render (request,template_name='blog/index.html',context=context)
+    # we dont need this anymore cuz we in templatetags/blog_tags.py made custom templatetags and our server just need calculate once
+    # posts=Post.published.all()
+    # comment=Comment
+    # context={"posts":posts,"comments":comment}
+    return render (request,template_name='blog/index.html')
 
 def post_list(request):
     posts = Post.published.all()

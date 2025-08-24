@@ -3,14 +3,26 @@
 {% block title %}
     my weblog
 {% endblock title %}
-{% block content %}
+{% comment %} {% block content %} {% endcomment %}
+{% comment %} the code below for getting information send request to server  {% endcomment %}
 {% comment %} <h2>امار</h2>
 <p>{{posts.count}}:پست ها </p>
 <p>{{comment.count}} :تعداد کامنت ها</p>
 <p>{{posts.first.created|date:"y/m/d"}} :تاریخ اخرین پست</p> {% endcomment %}
-<h2>امار</h2>
-<p>{% total_post %}:پست ها </p>
-<p>{%total_comments%} :تعداد کامنت ها</p>
-<p> {% last_post_date %}  :تاریخ اخرین پست</p>
-<p>{%most_popular_post %}</p>
-{% endblock content %}
+{% comment %} but this one calculate once and server it {% endcomment %}
+{% block content %}
+<h2>آمار</h2>
+<p>{% total_post %} :پست ها</p>
+<p>{% total_comments %} :تعداد کامنت ها</p>
+<p>{% last_post_date %} :تاریخ آخرین پست</p>
+
+<h2>محبوب‌ترین پست‌ها</h2>
+<ul>
+{% for post in most_popular_post %}
+    <li>{{ post.title }} ({{ post.comment.count }} کامنت)</li>
+{% endfor %}
+</ul>
+
+<h2>آخرین پست‌ها</h2>
+{% latest_post 5 %}
+{% endblock %}
