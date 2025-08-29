@@ -4,6 +4,8 @@ from django.db.models import Count
 from markdown import markdown
 from django.utils.safestring import mark_safe
 register = template.Library()
+# in this method sever just calc once 
+
 
 # simple_tag() is fo one var
 @register.simple_tag()
