@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     "blog",
     # third-party apps
     "django_jalali",
-]
+    # full text search or FTS  most data bases are support this future 
+    "django.contrib.postgres",
+    ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

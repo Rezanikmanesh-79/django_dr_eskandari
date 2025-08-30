@@ -3,9 +3,11 @@ from django.http import HttpResponse
 from blog.models import Post,Ticket,Comment
 import datetime
 from django.core.paginator import Paginator , EmptyPage ,PageNotAnInteger
-from blog.forms import TicketForm,CommentForm,PostForm
+from blog.forms import TicketForm,CommentForm,PostForm,SearchForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 def index(request):
     # we dont need this anymore cuz we in templatetags/blog_tags.py made custom templatetags and our server just need calculate once
     # posts=Post.published.all()
@@ -87,6 +89,40 @@ def create_post_view(request):
         form = PostForm()
 
     return render(request, "forms/post.html", {"form": form})
-
 def post_search(request):
-    pass
+    form = SearchForm(request.GET or None)
+    results = []
+
+    if form.is_valid():
+        query = form.cleaned_data['query']
+
+        # results1 = Post.published.filter(content__icontains=query)
+        # results2 = Post.published.filter(title__icontains=query)
+
+        # results = results1.union(results2)
+        # with "Q" we can use and or ...
+        # results=Post.published.filter(Q(title__icontains=query)|Q(content__icontains=query))
+        
+        # full text search or FTS  most data bases are support this future 
+        # results = Post.published.annotate(
+        #     search=SearchVector('title',weigh='A')+SearchVector('content',weigh='B')
+        # ).filter(search=query)
+        
+        # i hear we use FTS with ranking
+        vector = (
+            SearchVector('title', weight='A') + 
+            SearchVector('content', weight='B')
+        )
+        search_query = SearchQuery(query)
+
+        results = Post.published.annotate(
+            rank=SearchRank(vector, search_query)
+        ).filter(rank__gte=0.1).order_by('-rank')
+    
+    
+    context = {
+        'form': form,
+        'query':query,
+        'Results': results,  
+    }
+    return render(request, 'blog/post-search.html', context)

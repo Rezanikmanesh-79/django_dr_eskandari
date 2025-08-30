@@ -1,0 +1,14 @@
+{% extends 'parent/base.html' %}
+
+{% block content %}
+<h2>Search Results</h2>
+
+<ul>
+{% for result in Results %}
+    <li>
+        <a href="{{ result.get_absolute_url }}">{{ result }}</a>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock content %}
