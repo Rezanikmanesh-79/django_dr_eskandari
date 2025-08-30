@@ -8,6 +8,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+from django.contrib.postgres.search import TrigramSimilarity
 def index(request):
     # we dont need this anymore cuz we in templatetags/blog_tags.py made custom templatetags and our server just need calculate once
     # posts=Post.published.all()
@@ -109,17 +110,22 @@ def post_search(request):
         # ).filter(search=query)
         
         # i hear we use FTS with ranking
-        vector = (
-            SearchVector('title', weight='A') + 
-            SearchVector('content', weight='B')
-        )
-        search_query = SearchQuery(query)
+        # vector = (
+        #     SearchVector('title', weight='A') + 
+        #     SearchVector('content', weight='B')
+        # )
+        # search_query = SearchQuery(query)
 
+        # results = Post.published.annotate(
+        #     rank=SearchRank(vector, search_query)
+        # ).filter(rank__gte=0.1).order_by('-rank')
+    
+        # trigram similarity
+        # pg_trgm is an extension for postgresSQl
+    
         results = Post.published.annotate(
-            rank=SearchRank(vector, search_query)
-        ).filter(rank__gte=0.1).order_by('-rank')
-    
-    
+        similarity=TrigramSimilarity('title', query)
+        ).filter(similarity__gt=0.3).order_by('-similarity')
     context = {
         'form': form,
         'query':query,
