@@ -87,3 +87,6 @@ def create_post_view(request):
         form = PostForm()
 
     return render(request, "forms/post.html", {"form": form})
+
+def post_search(request):
+    pass

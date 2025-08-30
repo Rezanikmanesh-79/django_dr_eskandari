@@ -10,5 +10,6 @@ urlpatterns = [
     path('post/<int:pk>/',views.post_detail,name="post-detail"),
     path('ticket/',views.ticket,name='ticket'),
     path('post/<int:pk>/comment',views.post_comment,name='comment'),
-    path('posts/create',views.create_post_view,name='create-post-view')
+    path('posts/create',views.create_post_view,name='create-post-view'),
+    path('posts_search',views.post_search,name='posts_search')
 ]

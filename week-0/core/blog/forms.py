@@ -59,3 +59,6 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'content', 'reading_time')
+
+class SearchForm(forms.Form):
+    query=forms.CharField(label="جست وجو",max_length=100)
