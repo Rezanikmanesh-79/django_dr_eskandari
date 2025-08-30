@@ -5,7 +5,7 @@ import datetime
 from django.core.paginator import Paginator , EmptyPage ,PageNotAnInteger
 from blog.forms import TicketForm,CommentForm,PostForm
 from django.views.decorators.http import require_POST
-
+from django.contrib.auth.decorators import login_required
 def index(request):
     # we dont need this anymore cuz we in templatetags/blog_tags.py made custom templatetags and our server just need calculate once
     # posts=Post.published.all()
@@ -73,11 +73,12 @@ def post_comment(request,pk):
     context={'post':post,'comment':comment,'form':form}
     return render(request,template_name='forms/comment.html',context=context)
 
-
+@login_required
 def create_post_view(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
+            # every time we want to use ForeignKey we should do it in this way
             post = form.save(commit=False)
             post.author = request.user
             post.save()
