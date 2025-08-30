@@ -77,17 +77,19 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
+# with python -Xutf8 manage.py dumpdata --indent=4 >database.json  we can export date base
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',            
-        'PASSWORD': 'root',        
-        'HOST': 'localhost',             
-        'PORT': '5432',                 
+        'NAME': 'admin_blog',      # your database
+        'USER': 'blog_admin',      # your user
+        'PASSWORD': 'root',        # your password
+        'HOST': 'localhost',       # or '127.0.0.1'
+        'PORT': '5432',            # default PostgreSQL port
     }
 }
+# with python manage.py loaddata python manage.py loaddata  we can import exported data to data base
+# imported note wit jalali calender give us error that why we should change calender in model 
 
 
 # Password validation
