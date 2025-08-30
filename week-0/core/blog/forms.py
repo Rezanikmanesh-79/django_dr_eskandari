@@ -54,3 +54,8 @@ class CommentForm(forms.ModelForm):
             return name
         else:
             raise forms.ValidationError("نام وارد شده کوتاه است")
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'content', 'reading_time')

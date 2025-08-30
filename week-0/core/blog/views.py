@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from blog.models import Post,Ticket,Comment
 import datetime
 from django.core.paginator import Paginator , EmptyPage ,PageNotAnInteger
-from blog.forms import TicketForm,CommentForm
+from blog.forms import TicketForm,CommentForm,PostForm
 from django.views.decorators.http import require_POST
 
 def index(request):
@@ -72,3 +72,14 @@ def post_comment(request,pk):
         comment.save()
     context={'post':post,'comment':comment,'form':form}
     return render(request,template_name='forms/comment.html',context=context)
+
+
+def create_post_view(request):
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("'blog:index'") 
+    else:
+        form = PostForm()  
+    return render(request, "forms/post.html", {"form": form})
