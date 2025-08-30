@@ -17,7 +17,11 @@ def total_comments():
     return Comment.objects.filter(is_active=True).count()
 @register.simple_tag()
 def last_post_date():
-    return Post.published.order_by('-created')[0].created
+    last_post = Post.published.order_by('-created').first()
+    if last_post:
+        return last_post.created
+    return None
+
 # we should tell the location in ()
 # we use inclusion_tag when we have list of var
 @register.inclusion_tag('partials/latest-post.html')

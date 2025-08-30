@@ -78,8 +78,11 @@ def create_post_view(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect("'blog:index'") 
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect("blog:post-list")  
     else:
-        form = PostForm()  
+        form = PostForm()
+
     return render(request, "forms/post.html", {"form": form})
