@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Post,Ticket,Comment
+from blog.models import Post,Ticket,Comment,Image
 from django_jalali.admin.filters import JDateFieldListFilter
 
 admin.site.site_header = "پنل مدیریت جنگو"
@@ -38,3 +38,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter=('is_active',('created_at',JDateFieldListFilter))
     search_fields=('content','name')
     list_editable=['is_active']
+
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    list_display=['id','post','image']

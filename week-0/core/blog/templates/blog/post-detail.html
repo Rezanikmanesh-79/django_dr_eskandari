@@ -9,7 +9,20 @@
     <h1>Post Detail</h1>
     <h2>{{ post.title }} by {{ post.author }}</h2>
     <p>{{ post.content|markdown }}</p>
-    
+{% comment %} we load all of images with  {% endcomment %}
+    <div class="post-images">
+        {% for image in post.images.all %}
+            <div class="post-image">
+                <img src="{{ image.image.url }}" alt="{{ image.description }}">
+                {% if image.description %}
+                    <p>{{ image.description }}</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>هیچ تصویری برای این پست وجود ندارد.</p>
+        {% endfor %}
+    </div>
+
     <br>
     {{ post.PUBLISHED|date:"Y/m/d" }}
 

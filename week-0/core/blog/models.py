@@ -90,3 +90,20 @@ class Comment(models.Model):
         indexes=[models.Index(fields=["-created_at"])]
         verbose_name="دیدگاه"
         verbose_name_plural="دیدگاه ها"
+
+
+class Image(models.Model):
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='images',
+        verbose_name='تصاویر'
+    )
+    image = models.ImageField(upload_to='images/',verbose_name="تصویر")
+    description = models.TextField(verbose_name="توضیحات")
+    created_at = jmodels.jDateTimeField(auto_now_add=True,verbose_name="ساخته شده در")
+
+    class Meta:
+        verbose_name = "تصویر"
+        verbose_name_plural = "تصاویر"
+        ordering = ['-created_at']

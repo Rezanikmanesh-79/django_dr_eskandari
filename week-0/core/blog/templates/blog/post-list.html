@@ -13,6 +13,10 @@
                 {% comment %} whit {{post.get_absolute_url}} we call the method that we over wried {% endcomment %}
                 <h3><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h3>
                 <p>{{post.content | truncatewords:5}}</p>
+                <p class="post-image">
+                        <img src="{{ post.images.first.image.url }}" alt="Sample image">
+                </p>
+
                 </li>
                 <br>
         {% endfor %}
