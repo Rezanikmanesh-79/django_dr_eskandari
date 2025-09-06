@@ -91,7 +91,7 @@ class Comment(models.Model):
         verbose_name="دیدگاه"
         verbose_name_plural="دیدگاه ها"
 
-
+# we need too create class for images
 class Image(models.Model):
     post = models.ForeignKey(
         Post,

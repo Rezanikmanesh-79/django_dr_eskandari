@@ -6,7 +6,21 @@ admin.site.site_header = "پنل مدیریت جنگو"
 admin.site.site_title = "پنل مدیریت وبلاگ"
 admin.site.index_title = "خوش آمدید به پنل مدیریت"
 
+# for seeng relative model wh should use inline
 
+class ImageInline(admin.TabularInline): 
+    model = Image
+    extra = 1  
+    fields = ['image', 'description']
+
+class PostInline(admin.TabularInline): 
+    model = Post
+    extra = 1 
+    fields = ['title', 'author', 'created_at']  
+    readonly_fields = ['created_at']  
+    
+
+    
 # admin.site.register(Post)
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -25,7 +39,8 @@ class PostAdmin(admin.ModelAdmin):
     # editing status on main page
     list_editable = ('status',)
     list_display_links = ['title', 'author']
-
+    # we add inline hear
+    inlines = [ImageInline]
 @admin.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):
     list_display=['name','email','phone','subject','created_at']
@@ -42,3 +57,4 @@ class CommentAdmin(admin.ModelAdmin):
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display=['id','post','image']
+

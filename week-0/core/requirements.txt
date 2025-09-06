@@ -7,3 +7,6 @@ python-decouple
 requests
 # for farsi date
 django-jalali
+django-resized
+pillow
+Markdown
