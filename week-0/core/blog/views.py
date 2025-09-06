@@ -1,12 +1,15 @@
 from django.shortcuts import render ,get_object_or_404 ,redirect
 from django.http import HttpResponse
-from blog.models import Post,Ticket,Comment
+# my models
+from blog.models import Post,Ticket,Comment,Image
 import datetime
 from django.core.paginator import Paginator , EmptyPage ,PageNotAnInteger
+# my forms
 from blog.forms import TicketForm,CommentForm,PostForm,SearchForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+# this for search postgres
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.postgres.search import TrigramSimilarity
 def index(request):
@@ -84,8 +87,13 @@ def create_post_view(request):
             # every time we want to use ForeignKey we should do it in this way
             post = form.save(commit=False)
             post.author = request.user
-            post.save()
+            post.save()            
+            for i in range(1, 3):  # تعداد فیلدهای تصویر
+                image_file = form.cleaned_data.get(f'image{i}')
+                if image_file:
+                    Image.objects.create(post=post, image=image_file)
             return redirect("blog:post-list")  
+            
     else:
         form = PostForm()
 
@@ -132,3 +140,12 @@ def post_search(request):
         'Results': results,  
     }
     return render(request, 'blog/post-search.html', context)
+
+@login_required
+def profile(request):
+    user = request.user
+    posts = Post.published.filter(author=user)
+    context = {
+        'posts': posts
+    }
+    return render(request, 'blog/profile.html', context)

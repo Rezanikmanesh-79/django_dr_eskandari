@@ -1,0 +1,32 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load jformat %}
+
+{% block title %}
+    Profile Page
+{% endblock %}
+
+{% block content %}
+<h1>Profile Page</h1>
+<p><a href="{% url 'blog:create-post-view' %}">ایجاد پست جدید</a></p>
+<table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <th>ردیف</th>
+        <th>پست</th>
+        <th>مشاهده</th>
+        <th>ویرایش</th>
+        <th>حذف</th>
+    </tr>
+    {% for post in posts %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ post.title }}</td>
+
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="4">هیچ پستی وجود ندارد.</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

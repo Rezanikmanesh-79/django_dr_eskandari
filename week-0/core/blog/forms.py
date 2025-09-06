@@ -56,6 +56,9 @@ class CommentForm(forms.ModelForm):
             raise forms.ValidationError("نام وارد شده کوتاه است")
 
 class PostForm(forms.ModelForm):
+    image1 = forms.ImageField(required=False, label="تصویر ۱")
+    image2 = forms.ImageField(required=False, label="تصویر ۲")
+
     class Meta:
         model = Post
         fields = ('title', 'content', 'reading_time')

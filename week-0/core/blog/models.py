@@ -3,7 +3,7 @@ from django_jalali.db import models as jmodels
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
-
+from django.utils.text import slugify
 # for django resize 
 from django_resized import ResizedImageField
 '''
@@ -44,6 +44,17 @@ class Post (models.Model):
     
     def __str__(self):
         return self.title
+# for auto adding sluge we over write save class
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)
+            slug = base_slug
+            counter = 1
+            while Post.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     # tune the class
     objects = models.Manager()
@@ -108,8 +119,17 @@ class Image(models.Model):
         size=[300, 300],
         crop=['middle', 'center'],quality=50
     )
-    description = models.TextField(verbose_name="توضیحات")
+    description = models.TextField(verbose_name="توضیحات",null=True,blank=True)
     created_at = jmodels.jDateTimeField(auto_now_add=True,verbose_name="ساخته شده در")
+class Image(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images')
+    image = ResizedImageField(upload_to='images/', size=[300,300], crop=['middle','center'], quality=50)
+    description = models.TextField(null=True, blank=True)
+    created_at = jmodels.jDateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        desc = self.description if self.description else "بدون توضیح"
+        return f"ID: {self.id} | {desc}"
 
     class Meta:
         verbose_name = "تصویر"
