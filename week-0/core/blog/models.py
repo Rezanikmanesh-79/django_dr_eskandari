@@ -4,6 +4,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+# for django resize 
+from django_resized import ResizedImageField
 '''
 most imported data base command 
 ddl--> drop -create
@@ -99,7 +101,13 @@ class Image(models.Model):
         related_name='images',
         verbose_name='تصاویر'
     )
-    image = models.ImageField(upload_to='images/',verbose_name="تصویر")
+    # come from django_resized
+    image = ResizedImageField(
+        upload_to='images/',
+        verbose_name="تصویر",
+        size=[300, 300],
+        crop=['middle', 'center'],quality=50
+    )
     description = models.TextField(verbose_name="توضیحات")
     created_at = jmodels.jDateTimeField(auto_now_add=True,verbose_name="ساخته شده در")
 
