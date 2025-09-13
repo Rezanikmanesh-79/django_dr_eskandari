@@ -82,6 +82,7 @@ def post_comment(request,pk):
 @login_required
 def create_post_view(request):
     if request.method == "POST":
+        # when we want to add file like image we use (request.FILES)
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             # every time we want to use ForeignKey we should do it in this way
@@ -149,3 +150,11 @@ def profile(request):
         'posts': posts
     }
     return render(request, 'blog/profile.html', context)
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == "POST":
+        post.delete()
+        return redirect("blog:profile")
+    return render(request, "forms/delete_post.html", {"post": post})

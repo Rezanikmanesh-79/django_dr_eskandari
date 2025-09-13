@@ -21,11 +21,13 @@
     <tr>
         <td>{{ forloop.counter }}</td>
         <td>{{ post.title }}</td>
-
+        <td><a href="{% url 'blog:post-detail' post.id %}">مشاهده</a></td>
+        {% comment %} <td><a href="{% url 'blog:update-post-view' post.id %}">ویرایش</a></td> {% endcomment %}
+        <td><a href="{% url 'blog:delete-post' post.id %}">حذف</a></td>
     </tr>
     {% empty %}
     <tr>
-        <td colspan="4">هیچ پستی وجود ندارد.</td>
+        <td colspan="5">هیچ پستی وجود ندارد.</td>
     </tr>
     {% endfor %}
 </table>

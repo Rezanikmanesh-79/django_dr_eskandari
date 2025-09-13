@@ -44,6 +44,12 @@ class Post (models.Model):
     
     def __str__(self):
         return self.title
+    # if we want to delete image after deleting post we should over write delete class
+    def delete(self, *args, **kwargs):
+        if self.image:
+            self.image.delete(save=False) 
+        super().delete(*args, **kwargs)  
+
 # for auto adding sluge we over write save class
     def save(self, *args, **kwargs):
         if not self.slug:
