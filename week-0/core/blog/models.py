@@ -137,6 +137,11 @@ class Image(models.Model):
         desc = self.description if self.description else "بدون توضیح"
         return f"ID: {self.id} | {desc}"
 
+    def delete(self, *args, **kwargs):
+        if self.image:
+            self.image.delete(save=False) 
+        super().delete(*args, **kwargs)  
+
     class Meta:
         verbose_name = "تصویر"
         verbose_name_plural = "تصاویر"

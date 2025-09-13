@@ -1,5 +1,7 @@
 from django import forms
 from blog.models import Ticket,Comment,Post
+
+
 class TicketForm(forms.Form):
 # for just checking (not using database) we use Forms
     SUBJECT_CHOICES = (
@@ -65,3 +67,9 @@ class PostForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     query=forms.CharField(label="جست وجو",max_length=100)
+
+
+class LoginForm(forms.Form):
+    user_name=forms.CharField(max_length=250,required=True)
+    # for beaing * we use (widget=forms.PasswordInput) in password
+    password=forms.CharField(max_length=250,required=True, widget=forms.PasswordInput)

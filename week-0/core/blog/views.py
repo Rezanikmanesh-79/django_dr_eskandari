@@ -5,13 +5,17 @@ from blog.models import Post,Ticket,Comment,Image
 import datetime
 from django.core.paginator import Paginator , EmptyPage ,PageNotAnInteger
 # my forms
-from blog.forms import TicketForm,CommentForm,PostForm,SearchForm
+from blog.forms import TicketForm,CommentForm,PostForm,SearchForm,LoginForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 # this for search postgres
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.postgres.search import TrigramSimilarity
+# we use django auth system
+from django.contrib.auth import login,logout,authenticate
+
+
 def index(request):
     # we dont need this anymore cuz we in templatetags/blog_tags.py made custom templatetags and our server just need calculate once
     # posts=Post.published.all()
@@ -158,3 +162,61 @@ def delete_post(request, post_id):
         post.delete()
         return redirect("blog:profile")
     return render(request, "forms/delete_post.html", {"post": post})
+
+@login_required
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if post.author==request.user:
+        if request.method == "POST":
+            form = PostForm(request.POST, request.FILES, instance=post)
+            if form.is_valid():
+                form.save(commit=False)
+                post.author=request.user
+                Post.Status.DRAFT
+                post.save()
+                for i in range(1, 3):  # تعداد فیلدهای تصویر
+                    image_file = form.cleaned_data.get(f'image{i}')
+                    if image_file:
+                        Image.objects.create(post=post, image=image_file)
+                return redirect("blog:profile")
+        else:
+            # cuz we want to load fields we use instance=post
+            form = PostForm(instance=post)
+
+        return render(request, "forms/post.html", {"form": form, "post": post})
+    else:
+        return redirect("blog:profile")
+
+@login_required
+def delete_image(request, image_id):
+    if request.method == "POST":
+        image = get_object_or_404(Image, id=image_id)
+        post = image.post
+        if post.author == request.user:
+            image.delete()
+    return redirect("blog:edit-post", post_id=post.id)
+
+
+# we use (django.contrib.auth) for user_login
+def user_login(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(
+                request,
+                username=cd['user_name'],
+                password=cd['password']
+            )
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('blog:profile')  # به صفحه اصلی یا هر URL دیگری
+                else:
+                    return HttpResponse("کاربر غیر فعال است")
+            else:
+                return HttpResponse("پسورد یا نام کاربری درست نیست")
+    else:
+        form = LoginForm()
+    
+    return render(request, 'forms/login.html', {'form': form})

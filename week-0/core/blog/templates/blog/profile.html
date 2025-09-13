@@ -22,7 +22,7 @@
         <td>{{ forloop.counter }}</td>
         <td>{{ post.title }}</td>
         <td><a href="{% url 'blog:post-detail' post.id %}">مشاهده</a></td>
-        {% comment %} <td><a href="{% url 'blog:update-post-view' post.id %}">ویرایش</a></td> {% endcomment %}
+        <td><a href="{% url 'blog:edit-post' post.id %}">ویرایش</a></td>
         <td><a href="{% url 'blog:delete-post' post.id %}">حذف</a></td>
     </tr>
     {% empty %}
