@@ -6,6 +6,8 @@
 {% if request.user.is_authenticated %}
 <div>
     <a href="{% url 'blog:profile' %}">{{ request.user.username }}</a>
+    <a href="{% url 'blog:logout' %}">خروج</a>
+
 </div>
 {% else %}
 <div>

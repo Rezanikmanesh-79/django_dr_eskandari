@@ -220,3 +220,8 @@ def user_login(request):
         form = LoginForm()
     
     return render(request, 'forms/login.html', {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('blog:login')

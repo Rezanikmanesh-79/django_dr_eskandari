@@ -18,5 +18,5 @@ urlpatterns = [
     path('profile/edit_post/<int:post_id>/', views.edit_post, name="edit-post"),
     path('profile/delete_image/<int:image_id>/', views.delete_image, name='delete-image'),
     path('login/', views.user_login, name='login'),
-
+    path('logout/', views.user_logout, name='logout'),
 ]
