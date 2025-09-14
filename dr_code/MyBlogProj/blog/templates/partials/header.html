@@ -1,0 +1,15 @@
+<form method="get" action="{% url 'blog:search' %}">
+    <input type="text" name="query" required>
+    <input type="submit" value="جستجو">
+</form> {#<p>header</p>#}
+<a href="{% url 'blog:profile' %}">پروفایل</a>
+{% if request.user.is_authenticated %}
+    <div>
+        <a href="#">{{ request.user.first_name|default:request.user.username}}</a>
+        <a href="{% url 'blog:logout' %}">خروج</a>
+    </div>
+{% else %}
+    <div>
+        <a href="{% url 'blog:login' %}">ورود</a>
+    </div>
+{% endif %}

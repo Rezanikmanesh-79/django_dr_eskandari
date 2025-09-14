@@ -1,0 +1,18 @@
+{% extends 'parent/base.html' %}
+{% block title %}
+    Post Comment
+{% endblock %}
+
+{% block content %}
+    <form method="POST" action="{% url 'blog:post-comment' post.id %}">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <div class="col-12">
+            <button type="submit">ثبت</button>
+        </div>
+    </form>
+    {% if comment %}
+        دیدگاه شما برای ادمین ارسال شد. در صورت تایید به زودی در وبلاگ نمایش داده می شود
+        <a href="{{ post.get_absolute_url }}">بازگشت به صفحه پست</a>
+    {% endif %}
+{% endblock %}

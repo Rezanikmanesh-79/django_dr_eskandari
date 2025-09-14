@@ -1,0 +1,26 @@
+{% extends 'parent/base.html' %}
+{% block title %}
+    Ticket Form
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {#        {{ form.as_table }}#}
+        {% for field in form %}
+            <br>
+            {{ field.label }} {{ field }}
+        {% endfor %}
+        <input type="text" name="message">
+        <input type="submit" value="ذخیره">
+    </form>
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    {{ field.label }} : {{ error }}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'parent/base.html' %}
+{% load blog_tags %}
+{% block title %}
+    My Blog
+{% endblock %}
+{% block content %}
+    <h2> آمار</h2>
+    <p>تعداد پست ها : {% total_posts %}</p>
+    <p> تعداد کامنت ها:{% total_comments %}</p>
+    <p> تاریخ درج آخرین پست:{% last_post_date %}</p>
+    {% latest_post 3 %}
+    <h2> محبوب ترین پست ها</h2>
+    {% most_popular_posts 3 as pop_posts %}
+    {% for post in pop_posts %}
+        <br>
+        <a href='{{ post.get_absolute_url }}'>{{ post.title }}</a>
+        {% empty %}
+        هنوز پستی درج نشده است!
+    {% endfor %}
+
+{% endblock %}

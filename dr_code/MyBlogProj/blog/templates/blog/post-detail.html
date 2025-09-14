@@ -1,0 +1,60 @@
+{% extends 'parent/base.html' %}
+{% load jformat %}
+{% load blog_tags %}
+{% load static %}
+{% block title %}
+    Post Detail
+{% endblock %}
+{% block content %}
+    <h1> Post detail</h1>
+    <h2> {{ post.title }} by : {{ post.author }}</h2>
+    <p> {{ post.content | markdown }}</p>
+    <div>
+    {% for image in post.images.all %}
+        <br>
+        <<div class="image">
+        <img src="{{ image.image_file.url }}" alt="{{ image.title }}">
+    {%empty%}
+        <p>تصویری وجود ندارد!</p>
+    {% endfor %}
+
+    </div>
+    <br>
+    {{ post.publish| jformat }}
+    {#    {{ new_date|date:'Y/m/d' }}#}
+
+    <!-- Comments START -->
+    <div>
+        {% with comments.count as cm_count %}
+            <h3> {{ cm_count }} دیدگاه </h3>
+        {% endwith %}
+        <!-- Comment level 1-->
+        {% for cm in comments %}
+            <div>
+                {{ cm.name }}
+                <br>
+                {{ post.created}}
+
+                <p>{{ cm.content|linebreaks }}</p>
+            </div>
+
+            {% empty %}
+            <p>کامنتی وجود ندارد!</p>
+        {% endfor %}
+    </div>
+    <!-- Comments END -->
+    <div>
+        <h3>ثبت دیدگاه</h3>
+        <small>آدرس ایمیل شما منتشر نخواهد شد.</small>
+        <form method="POST" action="{% url 'blog:post-comment' post.id %}">
+            {% csrf_token %}
+
+            {{ form.as_div }}
+
+            <div class="col-12">
+                <button type="submit">ثبت</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+

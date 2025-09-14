@@ -1,0 +1,65 @@
+{% extends 'parent/base.html' %}
+{% block title %}New Post{% endblock %}
+{% block content %}
+
+
+    <!-- Title -->
+    <h1>ایجاد یا ویرایش پست</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">ذخیره</button>
+
+    </form>
+{#<div>#}
+{#    {% if post %}#}
+{#        {% for img in post.images.all %}#}
+{#            <p>#}
+{#            <img src="{{ img.image_file.url }}" alt="{{ img.title }}">#}
+{#            <a href="{% url 'blog:delete-image' img.id %}">حذف تصویر</a>#}
+{#            </p>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{#</div>#}
+
+ <!-- برای تصویر 1 -->
+<div class="form-group">
+    <label for="{{ form.image1.id_for_label }}">تصویر 1:</label>
+    {{ form.image1 }}
+    {% if is_edit and post.images.all.0 %}
+        <div class="mt-2">
+            <p>تصویر فعلی:</p>
+            <img src="{{ post.images.all.0.image_file.url }}" alt="تصویر فعلی 1" style="max-width: 200px;">
+            <a href="{% url 'blog:delete-image' post.images.all.0.id %}" class="btn btn-danger btn-sm mr-2">
+                حذف این تصویر
+            </a>
+        </div>
+    {% endif %}
+    {% if form.image1.errors %}
+        <div class="text-danger">{{ form.image1.errors }}</div>
+    {% endif %}
+</div>
+
+<!-- برای تصویر 2 -->
+<div class="form-group">
+    <label for="{{ form.image2.id_for_label }}">تصویر 2:</label>
+    {{ form.image2 }}
+    {% if is_edit and post.images.all.1 %}
+        <div class="mt-2">
+            <p>تصویر فعلی:</p>
+            <img src="{{ post.images.all.1.image_file.url }}" alt="تصویر فعلی 2" style="max-width: 200px;">
+            <a href="{% url 'blog:delete-image' post.images.all.1.id %}" class="btn btn-danger btn-sm mr-2">
+                حذف این تصویر
+            </a>
+        </div>
+    {% endif %}
+    {% if form.image2.errors %}
+        <div class="text-danger">{{ form.image2.errors }}</div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

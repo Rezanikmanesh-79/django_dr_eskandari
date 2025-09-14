@@ -1,0 +1,1720 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2025-07-12T08:17:38.974Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "1",
+        "object_repr": "adminBlog",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2025-07-12T08:18:18.862Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "2",
+        "object_repr": "testuser",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2025-07-12T08:18:59.951Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "2",
+        "object_repr": "testuser",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2025-07-12T08:26:08.111Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "C#",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2025-07-12T08:26:47.088Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "C# Prgamming",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2025-07-12T08:28:41.062Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Django",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2025-07-12T08:30:36.111Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "Python",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2025-07-12T08:31:14.406Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "C# Pregaming with MicroSoft",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2025-07-12T08:41:22.802Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "C# Pregaming with MicroSoft",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2025-07-12T08:48:20.544Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "C# Pregaming with MicroSoft",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Publish\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2025-07-12T08:48:28.057Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Django",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Publish\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2025-07-12T08:52:59.887Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "OpenAI vs. Deepseek",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2025-07-12T08:54:31.613Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Django",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2025-07-12T08:54:31.614Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2025-07-19T07:07:20.082Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2025-07-26T05:23:31.560Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "C# Progaming with MicroSoft",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2025-08-02T06:18:35.424Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "5",
+        "object_repr": "A post from shell.",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"<UNK>\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2025-08-02T06:18:35.427Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "6",
+        "object_repr": "Another post from shell by admin.",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"<UNK>\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2025-08-02T06:18:35.428Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "OpenAI vs. Deepseek",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"<UNK>\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2025-08-02T06:18:35.429Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"<UNK>\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2025-08-02T06:18:35.429Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"<UNK>\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2025-08-09T06:33:12.034Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "1: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "26",
+        "object_repr": "26: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "25",
+        "object_repr": "25: پیشنهاد",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "24",
+        "object_repr": "24: پیشنهاد",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "23",
+        "object_repr": "23: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "22",
+        "object_repr": "22: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "21",
+        "object_repr": "21: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "20",
+        "object_repr": "20: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "19",
+        "object_repr": "19: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "18",
+        "object_repr": "18: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "17",
+        "object_repr": "17: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "16",
+        "object_repr": "16: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "15",
+        "object_repr": "15: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "14",
+        "object_repr": "14: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "13",
+        "object_repr": "13: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "12",
+        "object_repr": "12: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "11",
+        "object_repr": "11: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "10",
+        "object_repr": "10: گزارش خطا",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "9",
+        "object_repr": "9: پیشنهاد",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "8",
+        "object_repr": "8: پیشنهاد",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.032Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "7",
+        "object_repr": "7: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.033Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "6",
+        "object_repr": "6: پیشنهاد",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.033Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "5",
+        "object_repr": "5: پیشنهاد",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.033Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "4: پیشنهاد",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.033Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "3: پیشنهاد",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2025-08-16T06:24:59.033Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "2: پیشنهاد",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2025-08-16T06:27:58.632Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "29",
+        "object_repr": "29: پیشنهاد",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+        "action_time": "2025-08-16T06:27:58.633Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "28",
+        "object_repr": "28: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+        "action_time": "2025-08-16T06:27:58.633Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "27",
+        "object_repr": "27: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2025-08-16T06:28:49.751Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "1: تشکر",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+        "action_time": "2025-08-16T06:29:10.524Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "3: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+        "action_time": "2025-08-16T06:29:10.524Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "2: ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+        "action_time": "2025-08-16T06:29:10.524Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "1: تشکر",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+        "action_time": "2025-08-16T07:11:38.540Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "1: امین اسکندری,C# Progaming with MicroSoft",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+        "action_time": "2025-08-16T07:12:00.921Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "1: امین اسکندری,C# Progaming with MicroSoft",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0636\\u0639\\u06cc\\u062a\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+        "action_time": "2025-08-16T08:24:07.478Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "4: Ali,Another post from shell by admin.",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0636\\u0639\\u06cc\\u062a\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+        "action_time": "2025-08-16T08:24:07.483Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "3: Amin Eskandari,Another post from shell by admin.",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0636\\u0639\\u06cc\\u062a\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+        "action_time": "2025-08-16T08:30:24.629Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "5: reza,Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0636\\u0639\\u06cc\\u062a\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+        "action_time": "2025-08-23T07:00:51.558Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "5",
+        "object_repr": "A post from shell.",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0645\\u0637\\u0627\\u0644\\u0639\\u0647\", \"Publish\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+        "action_time": "2025-08-23T07:01:36.293Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "6",
+        "object_repr": "Another post from shell by admin.",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0645\\u0637\\u0627\\u0644\\u0639\\u0647\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+        "action_time": "2025-08-23T07:01:36.295Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "C# Progaming with MicroSoft",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0645\\u0637\\u0627\\u0644\\u0639\\u0647\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 63,
+    "fields": {
+        "action_time": "2025-08-23T07:01:36.297Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Django",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0645\\u0637\\u0627\\u0644\\u0639\\u0647\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 64,
+    "fields": {
+        "action_time": "2025-08-23T07:01:36.299Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "OpenAI vs. Deepseek",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0645\\u0637\\u0627\\u0644\\u0639\\u0647\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 65,
+    "fields": {
+        "action_time": "2025-08-23T07:01:36.300Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0645\\u0637\\u0627\\u0644\\u0639\\u0647\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 66,
+    "fields": {
+        "action_time": "2025-08-23T07:01:36.302Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0645\\u0637\\u0627\\u0644\\u0639\\u0647\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 67,
+    "fields": {
+        "action_time": "2025-08-23T07:58:18.814Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 68,
+    "fields": {
+        "action_time": "2025-08-23T08:01:05.522Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 69,
+    "fields": {
+        "action_time": "2025-08-23T08:03:30.342Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 70,
+    "fields": {
+        "action_time": "2025-08-23T08:04:56.468Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 71,
+    "fields": {
+        "action_time": "2025-08-23T08:05:12.221Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 72,
+    "fields": {
+        "action_time": "2025-08-23T08:05:43.997Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Python",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 4,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 4,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 4,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 4,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 5,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 5,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 5,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 5,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 6,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 6,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 6,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 6,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add post",
+        "content_type": 7,
+        "codename": "add_post"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change post",
+        "content_type": 7,
+        "codename": "change_post"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete post",
+        "content_type": 7,
+        "codename": "delete_post"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view post",
+        "content_type": 7,
+        "codename": "view_post"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add ticket",
+        "content_type": 8,
+        "codename": "add_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change ticket",
+        "content_type": 8,
+        "codename": "change_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete ticket",
+        "content_type": 8,
+        "codename": "delete_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view ticket",
+        "content_type": 8,
+        "codename": "view_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add دیدگاه",
+        "content_type": 9,
+        "codename": "add_comment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change دیدگاه",
+        "content_type": 9,
+        "codename": "change_comment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete دیدگاه",
+        "content_type": 9,
+        "codename": "delete_comment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view دیدگاه",
+        "content_type": 9,
+        "codename": "view_comment"
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$ubs1VoNjkwf3Ma3R8bRbtn$FkvODW/S0NhU9xMoAXVWRE/Z4IHBTxA+mO0fwe6bwLg=",
+        "last_login": "2025-08-30T06:26:55.406Z",
+        "is_superuser": true,
+        "username": "adminBlog",
+        "first_name": "Amin",
+        "last_name": "Eskandari",
+        "email": "eskandari.a@outlook.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-07-12T08:15:20Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$J2PwgWVzUpemBmrr631L1Q$Kr/CPDA6/2fL3bTFzrABowKKTwH3zftthleuje6USHM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "testuser",
+        "first_name": "Alireza",
+        "last_name": "Ahmadi",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-07-12T08:18:18Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "blog",
+        "model": "post"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "blog",
+        "model": "ticket"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "blog",
+        "model": "comment"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2i9khzd5cxowufbzh4rfylgbuz76b9cr",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSE8BVy67zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsguT7PS7JcgPajvAO7Rb57m3dZkT3xV-0MGnjvS8Hu7fQYVRvzVZSl7koCkl74IDVWQuBowTiKStNhqMAIHnJK01IigCryRII0ijL-z9AfPqN-w:1ud0iI:yvd0L7uVFLbKGXuLDPgcPMWUi6sBvRDgkSY3LGmu0Sw",
+        "expire_date": "2025-08-02T06:06:26.963Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "5xkkq2kmnd649rq0fgwofzasyqjof0wt",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSE8BVy67zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsguT7PS7JcgPajvAO7Rb57m3dZkT3xV-0MGnjvS8Hu7fQYVRvzVZSl7koCkl74IDVWQuBowTiKStNhqMAIHnJK01IigCryRII0ijL-z9AfPqN-w:1unAKv:dUVySA54aCB4gx-c6lWph3JrSarOPhqtPEzUtuZEx5o",
+        "expire_date": "2025-08-30T06:24:17.634Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ad437rt8cxwsfj4m6uvqajpxh1oj6uh6",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSE8BVy67zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsguT7PS7JcgPajvAO7Rb57m3dZkT3xV-0MGnjvS8Hu7fQYVRvzVZSl7koCkl74IDVWQuBowTiKStNhqMAIHnJK01IigCryRII0ijL-z9AfPqN-w:1usF39:pfiWh7qBTNqfc9E299eG3iUWOFydToymTSzPF_JJeKQ",
+        "expire_date": "2025-09-13T06:26:55.412Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "at7y69thdl96coeplxg7ena5tycbom59",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSE8BVy67zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsguT7PS7JcgPajvAO7Rb57m3dZkT3xV-0MGnjvS8Hu7fQYVRvzVZSl7koCkl74IDVWQuBowTiKStNhqMAIHnJK01IigCryRII0ijL-z9AfPqN-w:1ui5ZT:jkU7j0okHWTqdR9bpW7BIlUEvjWp2tkOKJ64R1Hypjs",
+        "expire_date": "2025-08-16T06:18:19.456Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "c2m3zikedjassgy0gieyoxq68ckojk1h",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSE8BVy67zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsguT7PS7JcgPajvAO7Rb57m3dZkT3xV-0MGnjvS8Hu7fQYVRvzVZSl7koCkl74IDVWQuBowTiKStNhqMAIHnJK01IigCryRII0ijL-z9AfPqN-w:1ufXLm:joytnJCUUpdNV_18c0iJzi7Cd-BP05gtkipuH83XOLQ",
+        "expire_date": "2025-08-09T05:21:38.478Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "f39qvsis9ifepx4aw3cobd7d42z555bg",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSE8BVy67zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsguT7PS7JcgPajvAO7Rb57m3dZkT3xV-0MGnjvS8Hu7fQYVRvzVZSl7koCkl74IDVWQuBowTiKStNhqMAIHnJK01IigCryRII0ijL-z9AfPqN-w:1uaVPH:50n1heOAukmDskZ-O3Ch1uEw8Y17qFX-zyJ7wrx9H-8",
+        "expire_date": "2025-07-26T08:16:27.186Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "zfnx3czmsxpuy9xmxa6kxxquz5u1xgd5",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSE8BVy67zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsguT7PS7JcgPajvAO7Rb57m3dZkT3xV-0MGnjvS8Hu7fQYVRvzVZSl7koCkl74IDVWQuBowTiKStNhqMAIHnJK01IigCryRII0ijL-z9AfPqN-w:1ukbyk:gbrRRZg783lC-ofYGyLiC8fu6y_2zO9OyT-S8MMeKww",
+        "expire_date": "2025-08-23T05:18:50.958Z"
+    }
+},
+{
+    "model": "blog.post",
+    "pk": 1,
+    "fields": {
+        "status": "PB",
+        "title": "C# Progaming with MicroSoft",
+        "content": "Certainly! Below is a well-structured and engaging post about the **C# programming language**, suitable for social media, a blog, or a developer community.  \r\n\r\n---  \r\n\r\n### **🚀 Why C# is a Powerful & Versatile Programming Language**  \r\n\r\nC# (pronounced *\"C Sharp\"*) is a modern, object-oriented programming language developed by **Microsoft**. It’s widely used for building:  \r\n\r\n✔ **Desktop Apps** (Windows Forms, WPF)  \r\n✔ **Web Applications** (ASP.NET Core, Blazor)  \r\n✔ **Mobile Apps** (Xamarin, .NET MAUI)  \r\n✔ **Games** (Unity3D)  \r\n✔ **Cloud Services** (Azure, Microservices)  \r\n✔ **AI & Machine Learning** (ML.NET)  \r\n\r\n### **🔥 Key Features of C#**  \r\n✅ **Simple & Readable Syntax** – Easy to learn, especially for Java/C++ developers.  \r\n✅ **Strongly Typed** – Reduces runtime errors with compile-time checks.  \r\n✅ **Cross-Platform** – Runs on Windows, Linux, and macOS via **.NET Core**.  \r\n✅ **Asynchronous Programming** – `async/await` makes handling tasks efficient.  \r\n✅ **Garbage Collection** – Automatic memory management.  \r\n✅ **LINQ (Language Integrated Query)** – Powerful data querying capabilities.  \r\n✅ **Rich Ecosystem** – NuGet packages, Visual Studio IDE, and strong community support.  \r\n\r\n### **💡 Popular Companies Using C#**  \r\n- **Microsoft** (Windows, Office, Azure)  \r\n- **Stack Overflow** (Backend services)  \r\n- **Unity** (Game development)  \r\n- **Tesla** (Vehicle software)  \r\n- **Slack** (Parts of backend infrastructure)  \r\n\r\n### **📌 Sample Code – A Simple C# Program**  \r\n```csharp\r\nusing System;\r\n\r\nclass Program\r\n{\r\n    static void Main()\r\n    {\r\n        Console.WriteLine(\"Hello, C# World! 👋\");\r\n        \r\n        int number = 10;\r\n        if (number > 5)\r\n        {\r\n            Console.WriteLine(\"Number is greater than 5!\");\r\n        }\r\n    }\r\n}\r\n```  \r\n\r\n### **🚀 Want to Learn C#?**  \r\n🔹 **Official Docs**: [Microsoft C# Guide](https://learn.microsoft.com/en-us/dotnet/csharp/)  \r\n🔹 **Free Courses**: [Codecademy](https://www.codecademy.com/learn/learn-c-sharp), [freeCodeCamp](https://www.youtube.com/watch?v=GhQdlIFylQ8)  \r\n🔹 **Best Books**: *\"C# in Depth\"* (Jon Skeet), *\"Head First C#\"*  \r\n\r\nWhether you're into **web dev, gaming, or enterprise software**, C# is a **fantastic choice**! Are you using C#? Share your experience below! 👇  \r\n\r\n#CSharp #DotNet #Programming #SoftwareDevelopment #CodeNewbie #Tech",
+        "slug": "c-sharp",
+        "read_time": 30,
+        "created": "2025-07-12T11:56:08.101+03:30",
+        "updated": "2025-08-23T10:31:36.294+03:30",
+        "publish": "2024-07-12T11:56:03+03:30",
+        "author": 1
+    }
+},
+{
+    "model": "blog.post",
+    "pk": 2,
+    "fields": {
+        "status": "PB",
+        "title": "Django",
+        "content": "You're welcome! Here's a **well-structured and engaging post about Django**, the high-level Python web framework. This is perfect for social media, a blog, or developer communities.  \r\n\r\n---  \r\n\r\n### **🚀 Why Django is the Go-To Framework for Web Development**  \r\n\r\n**Django** is a powerful, open-source Python web framework designed to help developers build **secure, scalable, and maintainable** web applications quickly. It follows the **\"Batteries-included\"** philosophy, meaning it comes with almost everything you need out of the box!  \r\n\r\n### **🔥 Where is Django Used?**  \r\n✔ **Web Applications** (Instagram, Pinterest, Disqus)  \r\n✔ **Content Management Systems (CMS)**  \r\n✔ **E-Commerce Platforms**  \r\n✔ **Social Media Sites**  \r\n✔ **APIs (REST & GraphQL with Django REST Framework)**  \r\n✔ **Data Analytics & Machine Learning Web Apps**  \r\n\r\n### **💡 Key Features of Django**  \r\n✅ **Rapid Development** – Less boilerplate, more functionality.  \r\n✅ **Security** – Built-in protections against SQLi, XSS, CSRF, etc.  \r\n✅ **Scalability** – Handles high traffic (used by Instagram & NASA).  \r\n✅ **ORM (Object-Relational Mapping)** – Works with databases without writing SQL.  \r\n✅ **Admin Panel** – Auto-generated UI for managing data.  \r\n✅ **DRY (Don’t Repeat Yourself)** – Encourages reusable components.  \r\n✅ **MVT Architecture** (Model-View-Template) – Clean & organized structure.  \r\n\r\n### **📌 Popular Companies Using Django**  \r\n- **Instagram** (Meta)  \r\n- **Pinterest**  \r\n- **Dropbox** (Early versions)  \r\n- **Spotify** (Backend services)  \r\n- **NASA** (Some internal tools)  \r\n- **The Washington Post** (Content management)  \r\n\r\n### **👨‍💻 Sample Code – A Simple Django View**  \r\n```python\r\n# views.py\r\nfrom django.http import HttpResponse\r\n\r\ndef hello_world(request):\r\n    return HttpResponse(\"Hello, Django! 🚀\")\r\n\r\n# urls.py\r\nfrom django.urls import path\r\nfrom . import views\r\n\r\nurlpatterns = [\r\n    path('hello/', views.hello_world),\r\n]\r\n```  \r\n\r\n### **🚀 Want to Learn Django?**  \r\n🔹 **Official Docs**: [Django Documentation](https://docs.djangoproject.com/)  \r\n🔹 **Free Courses**: [Django for Beginners (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django), [YouTube Tutorials](https://www.youtube.com/watch?v=F5mRW0jo-U4)  \r\n🔹 **Best Books**: *\"Django for Beginners\"* (William S. Vincent), *\"Two Scoops of Django\"*  \r\n\r\nDjango is **perfect for startups, enterprises, and solo developers** looking to build robust web apps fast. Are you using Django? Share your thoughts below! 👇  \r\n\r\n#Django #Python #WebDevelopment #Backend #Programming #Coding #Tech  \r\n\r\n---  \r\n\r\nWould you like any tweaks or additional details? Happy to customize it further! 😊",
+        "slug": "django",
+        "read_time": 45,
+        "created": "2025-07-12T11:58:41.060+03:30",
+        "updated": "2025-08-23T10:31:36.296+03:30",
+        "publish": "2023-07-12T11:57:00+03:30",
+        "author": 2
+    }
+},
+{
+    "model": "blog.post",
+    "pk": 3,
+    "fields": {
+        "status": "PB",
+        "title": "Python",
+        "content": "### **🐍 Why Python is the World's Most Loved Programming Language**  \r\n\r\nPython is a **high-level, versatile, and beginner-friendly** programming language known for its **readability, simplicity, and vast ecosystem**. It’s used in **web development, data science, AI, automation, and more**—making it a top choice for beginners and experts alike.  \r\n\r\n---\r\n\r\n### **🔥 Key Features of Python**  \r\n✅ **Easy to Learn** – Clean and intuitive syntax (great for beginners).  \r\n✅ **Cross-Platform** – Runs on Windows, macOS, and Linux.  \r\n✅ **Huge Standard Library** – Built-in modules for file handling, web requests, databases, and more.  \r\n✅ **Dynamically Typed** – No need to declare variable types explicitly.  \r\n✅ **Strong Community & Ecosystem** – Tons of frameworks (Django, Flask) and libraries (NumPy, TensorFlow).  \r\n✅ **Supports Multiple Paradigms** – OOP, functional, and procedural programming.  \r\n✅ **Great for Automation & Scripting** – Saves time with repetitive tasks.  \r\n\r\n---\r\n\r\n### **🚀 What Can You Build with Python?**  \r\n✔ **Web Apps** (Django, Flask, FastAPI)  \r\n✔ **Data Science & AI** (Pandas, NumPy, TensorFlow, PyTorch)  \r\n✔ **Automation & Scripting** (Selenium, BeautifulSoup)  \r\n✔ **Game Development** (Pygame)  \r\n✔ **Desktop Apps** (Tkinter, PyQt)  \r\n✔ **APIs & Microservices** (FastAPI, Flask)  \r\n✔ **Cybersecurity & Ethical Hacking** (Scapy, Requests)  \r\n\r\n---\r\n\r\n### **💡 Top Companies Using Python**  \r\n- **Google** (Backend services, AI)  \r\n- **Netflix** (Data analysis, recommendation algorithms)  \r\n- **NASA** (Scientific computing)  \r\n- **Spotify** (Backend & data processing)  \r\n- **Instagram** (Server-side logic)  \r\n- **Uber** (Data analytics & geolocation)  \r\n\r\n---\r\n\r\n### **👨‍💻 Simple Python Example**  \r\n```python\r\n# Hello World in Python\r\nprint(\"Hello, Python! 🐍\")\r\n\r\n# Calculate factorial\r\ndef factorial(n):\r\n    return 1 if n == 0 else n * factorial(n - 1)\r\n\r\nprint(factorial(5))  # Output: 120\r\n```\r\n\r\n---\r\n\r\n### **📚 How to Get Started with Python?**  \r\n🔹 **Official Docs**: [Python.org](https://www.python.org/)  \r\n🔹 **Free Courses**:  \r\n   - [Python for Beginners (Microsoft)](https://learn.microsoft.com/en-us/training/paths/python-for-beginners/)  \r\n   - [freeCodeCamp’s Python Course](https://www.youtube.com/watch?v=rfscVS0vtbw)  \r\n🔹 **Best Books**:  \r\n   - *\"Python Crash Course\"* (Eric Matthes)  \r\n   - *\"Automate the Boring Stuff with Python\"* (Al Sweigart)  \r\n\r\n---\r\n\r\n### **🎯 Why Choose Python?**  \r\n- **#1 in Popularity** (Stack Overflow, TIOBE Index)  \r\n- **High Demand in Jobs** (Data Science, DevOps, Web Dev)  \r\n- **Perfect for Prototyping & Fast Development**  \r\n\r\nAre you using Python? What’s your favorite framework/library? Drop a comment! 👇  \r\n\r\n#Python #Programming #Coding #DataScience #AI #WebDevelopment #Tech  \r\n\r\n---  \r\n\r\nWould you like any modifications or additional details? 😊",
+        "slug": "python",
+        "read_time": 15,
+        "created": "2025-07-12T12:00:36.106+03:30",
+        "updated": "2025-08-23T10:31:36.300+03:30",
+        "publish": "2025-07-12T11:58:58+03:30",
+        "author": 1
+    }
+},
+{
+    "model": "blog.post",
+    "pk": 4,
+    "fields": {
+        "status": "PB",
+        "title": "OpenAI vs. Deepseek",
+        "content": "### **🤖 OpenAI vs. DeepSeek: Who Leads the AI Race?**  \r\n\r\nThe AI landscape is evolving rapidly, with **OpenAI** (creator of ChatGPT) and **DeepSeek** (known for DeepSeek-V3) emerging as key players. But how do they compare? Let’s break it down!  \r\n\r\n---\r\n\r\n## **🔍 Company Overview**  \r\n| **Feature**       | **OpenAI**                          | **DeepSeek**                     |  \r\n|-------------------|------------------------------------|----------------------------------|  \r\n| **Founded**       | 2015 (San Francisco)               | 2023 (China)                     |  \r\n| **Key Product**   | ChatGPT, GPT-4, DALL·E, Sora       | DeepSeek-V3, DeepSeek Coder      |  \r\n| **Focus**         | General AI, Multimodal Models      | Efficient LLMs, Coding & Search  |  \r\n| **Accessibility** | Freemium (Pro for GPT-4)           | **100% Free** (as of now)        |  \r\n\r\n---\r\n\r\n## **⚡ Model Comparison**  \r\n### **1. ChatGPT (OpenAI) vs. DeepSeek-V3**  \r\n| **Aspect**        | **ChatGPT (GPT-4 Turbo)**          | **DeepSeek-V3**                  |  \r\n|-------------------|-----------------------------------|----------------------------------|  \r\n| **Knowledge Cutoff** | ~Oct 2023                        | **July 2024** (More recent)      |  \r\n| **Context Length** | 128K tokens                      | **128K tokens** (Long-context)   |  \r\n| **Multimodal**    | ✅ (GPT-4V for images)            | ❌ (Text-only)                   |  \r\n| **Coding Skills** | Strong (GitHub Copilot powered by OpenAI) | **Excellent (Optimized for code)** |  \r\n| **Pricing**       | Free (GPT-3.5), $20/mo (GPT-4)   | **Completely Free**              |  \r\n\r\n### **2. Specialized Models**  \r\n- **OpenAI**:  \r\n  - **DALL·E 3** (Image Generation)  \r\n  - **Sora** (Video Generation – not public yet)  \r\n  - **Whisper** (Speech-to-Text)  \r\n- **DeepSeek**:  \r\n  - **DeepSeek Coder** (Focused on programming)  \r\n  - **DeepSeek Math** (Enhanced reasoning)  \r\n\r\n---\r\n\r\n## **💰 Pricing & Accessibility**  \r\n- **OpenAI** has a **freemium model**:  \r\n  - GPT-3.5: Free  \r\n  - GPT-4 Turbo: $20/month (Pro subscription)  \r\n  - API usage is **pay-per-call**  \r\n- **DeepSeek** is **100% free** (for now), making it a great alternative for budget-conscious users.  \r\n\r\n---\r\n\r\n## **🌍 Regional Differences**  \r\n- **OpenAI** is **globally dominant** but restricted in some countries.  \r\n- **DeepSeek** is **popular in China** and gaining traction worldwide as a free alternative.  \r\n\r\n---\r\n\r\n## **🚀 Which One Should You Use?**  \r\n- **Choose OpenAI if:**  \r\n  - You need **multimodal AI (images, voice, video)**  \r\n  - You rely on **GPT-4 Turbo’s polished responses**  \r\n  - You’re integrated with **Microsoft’s ecosystem (Azure OpenAI)**  \r\n\r\n- **Choose DeepSeek if:**  \r\n  - You want a **free, high-quality LLM**  \r\n  - You need **long-context (128K tokens) for docs/code**  \r\n  - You prefer **open-weight models** (DeepSeek releases some models openly)  \r\n\r\n---\r\n\r\n### **🔮 Future Outlook**  \r\n- **OpenAI** leads in **innovation (Sora, GPT-5 coming?)** but is becoming more closed-source.  \r\n- **DeepSeek** is growing fast, especially in **open & free AI**, and could become a major rival.  \r\n\r\n**Which AI do you prefer?** ChatGPT or DeepSeek? Let’s discuss! 👇  \r\n\r\n#AI #ChatGPT #DeepSeek #OpenAI #MachineLearning #LLM #ArtificialIntelligence  \r\n\r\n---  \r\n\r\nWould you like any refinements or additional details? 😊",
+        "slug": "openai-vs-deepseek",
+        "read_time": 7,
+        "created": "2025-07-12T12:22:59.877+03:30",
+        "updated": "2025-08-23T10:31:36.299+03:30",
+        "publish": "2025-07-12T12:21:46+03:30",
+        "author": 1
+    }
+},
+{
+    "model": "blog.post",
+    "pk": 5,
+    "fields": {
+        "status": "PB",
+        "title": "A post from shell.",
+        "content": "A post from shell.",
+        "slug": "post-shell",
+        "read_time": 25,
+        "created": "2025-07-19T09:56:17.784+03:30",
+        "updated": "2025-08-23T10:30:51.552+03:30",
+        "publish": "2025-07-19T09:55:50+03:30",
+        "author": 2
+    }
+},
+{
+    "model": "blog.post",
+    "pk": 6,
+    "fields": {
+        "status": "PB",
+        "title": "Another post from shell by admin.",
+        "content": "A post from shell.",
+        "slug": "post-shell-2",
+        "read_time": 12,
+        "created": "2025-07-19T10:01:09.717+03:30",
+        "updated": "2025-08-23T10:31:36.289+03:30",
+        "publish": "2025-07-19T10:01:01.183+03:30",
+        "author": 1
+    }
+},
+{
+    "model": "blog.post",
+    "pk": 7,
+    "fields": {
+        "status": "PB",
+        "title": "Python",
+        "content": "Python is a high-level **_programming_** language.",
+        "slug": "pth",
+        "read_time": 10,
+        "created": "2025-07-19T10:07:47.761+03:30",
+        "updated": "2025-08-23T11:35:43.995+03:30",
+        "publish": "2025-07-19T10:07:47+03:30",
+        "author": 2
+    }
+},
+{
+    "model": "blog.post",
+    "pk": 8,
+    "fields": {
+        "status": "DF",
+        "title": "New Python",
+        "content": "Pyhton and DJango are the best tools for programmer.",
+        "slug": "",
+        "read_time": 5,
+        "created": "2025-08-30T09:55:10.896+03:30",
+        "updated": "2025-08-30T09:55:10.931+03:30",
+        "publish": "2025-08-30T06:25:10.895Z",
+        "author": 1
+    }
+},
+{
+    "model": "blog.ticket",
+    "pk": 4,
+    "fields": {
+        "message": "w",
+        "name": "Ali",
+        "email": "a@a.com",
+        "phone": "",
+        "subject": "پیشنهاد",
+        "created_at": "2025-08-16T09:59:18.890+03:30"
+    }
+},
+{
+    "model": "blog.ticket",
+    "pk": 5,
+    "fields": {
+        "message": "",
+        "name": null,
+        "email": null,
+        "phone": "",
+        "subject": "",
+        "created_at": "2025-08-16T09:59:46.983+03:30"
+    }
+},
+{
+    "model": "blog.ticket",
+    "pk": 6,
+    "fields": {
+        "message": "w",
+        "name": "wer",
+        "email": "a@a.com",
+        "phone": "",
+        "subject": "پیشنهاد",
+        "created_at": "2025-08-16T10:00:00.750+03:30"
+    }
+},
+{
+    "model": "blog.ticket",
+    "pk": 7,
+    "fields": {
+        "message": "",
+        "name": null,
+        "email": null,
+        "phone": "",
+        "subject": "",
+        "created_at": "2025-08-16T10:01:01.165+03:30"
+    }
+},
+{
+    "model": "blog.ticket",
+    "pk": 8,
+    "fields": {
+        "message": "w",
+        "name": "qwerty",
+        "email": "a@a.com",
+        "phone": "qqqq",
+        "subject": "پیشنهاد",
+        "created_at": "2025-08-16T10:01:24.749+03:30"
+    }
+},
+{
+    "model": "blog.ticket",
+    "pk": 9,
+    "fields": {
+        "message": "",
+        "name": null,
+        "email": null,
+        "phone": "",
+        "subject": "",
+        "created_at": "2025-08-16T10:12:40.931+03:30"
+    }
+},
+{
+    "model": "blog.ticket",
+    "pk": 10,
+    "fields": {
+        "message": "",
+        "name": null,
+        "email": null,
+        "phone": "",
+        "subject": "",
+        "created_at": "2025-08-16T10:13:36.099+03:30"
+    }
+},
+{
+    "model": "blog.ticket",
+    "pk": 11,
+    "fields": {
+        "message": "",
+        "name": null,
+        "email": null,
+        "phone": "",
+        "subject": "",
+        "created_at": "2025-08-16T10:14:53.209+03:30"
+    }
+},
+{
+    "model": "blog.comment",
+    "pk": 1,
+    "fields": {
+        "post": 1,
+        "name": "امین اسکندری",
+        "email": "eskandari-a@live.com",
+        "content": "پست نوشته شده در مورد C# بسیار کامل و مفید بود.",
+        "created_at": "2025-08-16T10:41:38.538+03:30",
+        "updated_at": "2025-08-16T10:42:00.918+03:30",
+        "is_active": true
+    }
+},
+{
+    "model": "blog.comment",
+    "pk": 2,
+    "fields": {
+        "post": 7,
+        "name": "امین اسکندری",
+        "email": "eskandari-a@live.com",
+        "content": "test",
+        "created_at": "2025-08-16T11:41:55.301+03:30",
+        "updated_at": "2025-08-16T11:41:55.301+03:30",
+        "is_active": false
+    }
+},
+{
+    "model": "blog.comment",
+    "pk": 3,
+    "fields": {
+        "post": 6,
+        "name": "Amin Eskandari",
+        "email": "eskandary.a@gmail.com",
+        "content": "Python is good",
+        "created_at": "2025-08-16T11:52:55.230+03:30",
+        "updated_at": "2025-08-16T11:54:07.481+03:30",
+        "is_active": true
+    }
+},
+{
+    "model": "blog.comment",
+    "pk": 4,
+    "fields": {
+        "post": 6,
+        "name": "Ali",
+        "email": "a@a.com",
+        "content": "در زندگی غذای شور کمتر مصرف کنید",
+        "created_at": "2025-08-16T11:53:48.590+03:30",
+        "updated_at": "2025-08-16T11:54:07.469+03:30",
+        "is_active": true
+    }
+},
+{
+    "model": "blog.comment",
+    "pk": 5,
+    "fields": {
+        "post": 7,
+        "name": "reza",
+        "email": "eskandari.a@outlook.com",
+        "content": "test",
+        "created_at": "2025-08-16T12:00:11.493+03:30",
+        "updated_at": "2025-08-16T12:00:24.622+03:30",
+        "is_active": true
+    }
+},
+{
+    "model": "blog.comment",
+    "pk": 6,
+    "fields": {
+        "post": 7,
+        "name": "ff558",
+        "email": "eskandari-a@live.com",
+        "content": "پست نوشته شده در مورد C# بسیار کامل و مفید بود.",
+        "created_at": "2025-08-16T12:12:15.248+03:30",
+        "updated_at": "2025-08-16T12:12:15.248+03:30",
+        "is_active": false
+    }
+}
+]

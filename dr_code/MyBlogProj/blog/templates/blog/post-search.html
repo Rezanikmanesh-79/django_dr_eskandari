@@ -1,0 +1,13 @@
+{% extends 'parent/base.html' %}
+
+{% block title %} Search results {% endblock %}
+
+{% block content %}
+    <h2>Search Results for {{ query }}</h2>
+    <h3> {{ results.count }} results </h3>
+    <ul>
+        {% for result in results %}
+            <li><a href="{{ result.get_absolute_url }}">{{ result }}</a><br>{{ result.content|truncatewords:5 }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

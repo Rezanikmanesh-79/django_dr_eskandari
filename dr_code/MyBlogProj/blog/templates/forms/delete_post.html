@@ -1,0 +1,12 @@
+{% extends 'parent/base.html' %}
+{% load jformat %}
+{% load static %}
+{% block title %}delete post{% endblock %}
+{% block content %}
+    <h2>آیا از حذف پست {{ post.title }} اطمینان دارید؟</h2>
+    <a href="{% url 'blog:profile' %}">بازگشت</a>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="حذف">
+    </form>
+{% endblock %}
