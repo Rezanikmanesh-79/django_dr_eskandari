@@ -7,7 +7,7 @@ from django.core.paginator import Paginator , EmptyPage ,PageNotAnInteger
 from django.views.generic import ListView
 from django.views.generic import DetailView
 # my forms
-from blog.forms import TicketForm,CommentForm,PostForm,SearchForm,LoginForm
+from blog.forms import TicketForm,CommentForm,PostForm,SearchForm,LoginForm,UserRegisterForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -233,6 +233,21 @@ def delete_image(request, image_id):
 #     return render(request, 'forms/login.html', {'form': form})
 
 
-def user_logout(request):
-    logout(request)
-    return redirect('blog:login')
+# def user_logout(request):
+#     logout(request)
+#     return redirect('blog:login')
+
+
+def register(request):
+    if request.method == "POST":
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])  
+            user.save()
+            messages.success(request, "ثبت‌نام با موفقیت انجام شد. حالا وارد شوید.")
+            return redirect('blog:login')
+    else:
+        form = UserRegisterForm()
+
+    return render(request, 'registration/register.html', {'form': form})

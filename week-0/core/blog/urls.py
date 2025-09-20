@@ -26,5 +26,11 @@ urlpatterns = [
     # path('login/', views.user_login, name='login'),
     path("login/", auth_view.LoginView.as_view(), name="login"),
     # path('logout/', views.user_logout, name='logout'),
-    path("logout/", auth_view.LogoutView.as_view(), name="logout"),    
+    path("logout/", auth_view.LogoutView.as_view(), name="logout"),
+    path("password_change/", auth_view.PasswordChangeView.as_view(success_url="/blog/password_change_done/"), name="password_change"),  
+    path("password_change_Done/", auth_view.PasswordChangeDoneView.as_view(), name="password_change_Done"), 
+    path("password_reset/", auth_view.PasswordResetView.as_view(success_url="/blog/password_change_Done/"), name="password_reset"),
+    path("password_reset_done/", auth_view.PasswordResetDoneView.as_view(), name="password_reset_done"),  
+    path("password_reset/<uidb64>/<token>", auth_view.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+    path("register/", views.register,name="register")
 ]

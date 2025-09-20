@@ -1,0 +1,104 @@
+{% extends 'parent/base.html' %}
+
+{% block title %}
+ثبت‌نام کاربر
+{% endblock title %}
+
+{% block content %}
+<div class="flex items-center justify-center h-[80vh]">
+    <div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
+        <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">ثبت‌نام</h1>
+
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+
+            <!-- نمایش خطاهای غیر فیلدی -->
+            {% if form.non_field_errors %}
+                <div class="text-red-600 text-sm mb-2">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <!-- فیلد نام کاربری -->
+            <div>
+                <label for="id_username" class="block mb-1 font-medium">نام کاربری</label>
+                <input type="text" name="username" id="id_username"
+                       value="{{ form.username.value|default_if_none:'' }}"
+                       class="w-full border rounded px-3 py-2"
+                       placeholder="نام کاربری خود را وارد کنید">
+                {% if form.username.errors %}
+                    <p class="text-red-600 text-sm mt-1">{{ form.username.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- فیلد نام -->
+            <div>
+                <label for="id_first_name" class="block mb-1 font-medium">نام</label>
+                <input type="text" name="first_name" id="id_first_name"
+                       value="{{ form.first_name.value|default_if_none:'' }}"
+                       class="w-full border rounded px-3 py-2"
+                       placeholder="نام خود را وارد کنید">
+                {% if form.first_name.errors %}
+                    <p class="text-red-600 text-sm mt-1">{{ form.first_name.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- فیلد نام خانوادگی -->
+            <div>
+                <label for="id_last_name" class="block mb-1 font-medium">نام خانوادگی</label>
+                <input type="text" name="last_name" id="id_last_name"
+                       value="{{ form.last_name.value|default_if_none:'' }}"
+                       class="w-full border rounded px-3 py-2"
+                       placeholder="نام خانوادگی خود را وارد کنید">
+                {% if form.last_name.errors %}
+                    <p class="text-red-600 text-sm mt-1">{{ form.last_name.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- فیلد ایمیل -->
+            <div>
+                <label for="id_email" class="block mb-1 font-medium">ایمیل</label>
+                <input type="email" name="email" id="id_email"
+                       value="{{ form.email.value|default_if_none:'' }}"
+                       class="w-full border rounded px-3 py-2"
+                       placeholder="example@mail.com">
+                {% if form.email.errors %}
+                    <p class="text-red-600 text-sm mt-1">{{ form.email.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- فیلد رمز عبور -->
+            <div>
+                <label for="id_password" class="block mb-1 font-medium">رمز عبور</label>
+                <input type="password" name="password" id="id_password"
+                       class="w-full border rounded px-3 py-2"
+                       placeholder="رمز عبور خود را وارد کنید">
+                {% if form.password.errors %}
+                    <p class="text-red-600 text-sm mt-1">{{ form.password.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- فیلد تکرار رمز عبور -->
+            <div>
+                <label for="id_password2" class="block mb-1 font-medium">تکرار رمز عبور</label>
+                <input type="password" name="password2" id="id_password2"
+                       class="w-full border rounded px-3 py-2"
+                       placeholder="رمز عبور را دوباره وارد کنید">
+                {% if form.password2.errors %}
+                    <p class="text-red-600 text-sm mt-1">{{ form.password2.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
+                ثبت‌نام
+            </button>
+        </form>
+
+        <p class="mt-4 text-center text-sm">
+            قبلاً حساب دارید؟ 
+            <a href="{% url 'blog:login' %}" class="text-blue-500 hover:underline">ورود</a>
+        </p>
+    </div>
+</div>
+{% endblock content %}

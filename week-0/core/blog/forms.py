@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import Ticket,Comment,Post
+from blog.models import Ticket,Comment,Post,User
 
 
 class TicketForm(forms.Form):
@@ -73,3 +73,27 @@ class LoginForm(forms.Form):
     user_name=forms.CharField(max_length=250,required=True)
     # for beaing * we use (widget=forms.PasswordInput) in password
     password=forms.CharField(max_length=250,required=True, widget=forms.PasswordInput)
+
+from django import forms
+from django.contrib.auth.models import User
+
+class UserRegisterForm(forms.ModelForm):
+    password = forms.CharField(
+        max_length=100,
+        widget=forms.PasswordInput,
+        label='رمز عبور'
+    )
+    password2 = forms.CharField(
+        max_length=100,
+        widget=forms.PasswordInput,
+        label='تکرار رمز عبور'
+    )
+
+    class Meta:
+        model = User
+        fields = ["username", "first_name", "last_name", "email"]
+    def clean_password2(self):
+        cd = self.cleaned_data
+        if cd.get('password') != cd.get('password2'):
+            raise forms.ValidationError("رمز عبور با تکرار آن مطابقت ندارد.")
+        return cd.get('password2')

@@ -32,14 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 # ccbv.co.uk doc for class base 
 INSTALLED_APPS = [
+    # my apps 
+    "blog",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # my apps 
-    "blog",
     # third-party apps
     "django_jalali",
     # full text search or FTS  most data bases are support this future 
@@ -159,4 +159,8 @@ DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 # this setting use fore next in templates 
 LOGIN_URL = "/blog/login/"              
 LOGIN_REDIRECT_URL = "/blog/profile/"  
-LOGOUT_REDIRECT_URL = "/blog/login/"    
+LOGOUT_REDIRECT_URL = "/blog/login/"
+# time of rest password limit in sec
+PASSWORD_REST_TIMEOUT=3600*24
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

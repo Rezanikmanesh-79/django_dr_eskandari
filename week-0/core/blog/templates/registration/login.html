@@ -34,7 +34,6 @@
         {% endif %}
     </div>
 
-    <!-- این خط برای برگردوندن کاربر به صفحه‌ایه که ازش اومده -->
     {% if next %}
         <input type="hidden" name="next" value="{{ next }}">
     {% endif %}
@@ -42,4 +41,17 @@
     <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
         ورود
     </button>
+
+    <!-- لینک فراموشی رمز عبور -->
+    <div class="mt-4 text-right">
+        <a href="{% url 'blog:password_reset' %}" class="text-blue-500 hover:underline text-sm">
+            رمز عبور خود را فراموش کرده‌اید؟
+        </a>
+    </div>
+    <!-- لینک فراموشی رمز عبور -->
+    <div class="mt-4 text-right">
+        <a href="{% url 'blog:register' %}" class="text-blue-500 hover:underline text-sm">
+            ثبت نام
+        </a>
+    </div>
 </form>
