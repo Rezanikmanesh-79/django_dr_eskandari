@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# ccbv.co.uk doc for class base 
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -155,3 +155,8 @@ DJANGORESIZED_DEFAULT_KEEP_META = True
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
+
+# this setting use fore next in templates 
+LOGIN_URL = "/blog/login/"              
+LOGIN_REDIRECT_URL = "/blog/profile/"  
+LOGOUT_REDIRECT_URL = "/blog/login/"    

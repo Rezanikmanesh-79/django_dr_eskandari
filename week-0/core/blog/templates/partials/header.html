@@ -4,11 +4,13 @@
 </form>
 
 {% if request.user.is_authenticated %}
-<div>
-    <a href="{% url 'blog:profile' %}">{{ request.user.username }}</a>
-    <a href="{% url 'blog:logout' %}">خروج</a>
+<form method="post" action="{% url 'blog:logout' %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="text-red-500 hover:underline bg-transparent border-0 p-0 cursor-pointer">
+        خروج
+    </button>
+</form>
 
-</div>
 {% else %}
 <div>
     <a href="{% url 'blog:login' %}">ورود</a>

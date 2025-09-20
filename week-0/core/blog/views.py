@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from blog.models import Post,Ticket,Comment,Image
 import datetime
 from django.core.paginator import Paginator , EmptyPage ,PageNotAnInteger
+from django.views.generic import ListView
+from django.views.generic import DetailView
 # my forms
 from blog.forms import TicketForm,CommentForm,PostForm,SearchForm,LoginForm
 from django.views.decorators.http import require_POST
@@ -23,34 +25,43 @@ def index(request):
     # context={"posts":posts,"comments":comment}
     return render (request,template_name='blog/index.html')
 
-def post_list(request):
-    posts = Post.published.all()
-    paginator = Paginator(posts, per_page=2)
-    page_number = request.GET.get('page')
+# def post_list(request):
+#     posts = Post.published.all()
+#     paginator = Paginator(posts, per_page=2)
+#     page_number = request.GET.get('page')
 
-    try:
-        page_obj = paginator.page(page_number)
-    # if user input some ting is not int
-    except PageNotAnInteger:
-        page_obj = paginator.page(1)
-    except EmptyPage:
-        page_obj = paginator.page(paginator.num_pages)
+#     try:
+#         page_obj = paginator.page(page_number)
+#     # if user input some ting is not int
+#     except PageNotAnInteger:
+#         page_obj = paginator.page(1)
+#     except EmptyPage:
+#         page_obj = paginator.page(paginator.num_pages)
 
-    context = {'posts': page_obj}
-    return render(request, 'blog/post-list.html', context)
-def post_detail(request, pk):
-    # try:
-    #     post=Post.published.get(pk=pk)
-    #     context = {"post":post}
-    #     return render(request, template_name='blog/post-detail.html', context=context)
-    # except:
-    #     return HttpResponse('post dose not exist')
+#     context = {'posts': page_obj}
+#     return render(request, 'blog/post-list.html', context)
+class PostListView(ListView):
+    queryset = Post.published.all()
+    paginate_by = 3
+    template_name = "blog/post-detail.html"
+    context_object_name = 'post'
+
+class PostDetailView(DetailView):
+    model=Post
+    template_name='blog/post-detail.html'
+# def post_detail(request, pk):
+#     # try:
+#     #     post=Post.published.get(pk=pk)
+#     #     context = {"post":post}
+#     #     return render(request, template_name='blog/post-detail.html', context=context)
+#     # except:
+#     #     return HttpResponse('post dose not exist')
     
-    post = get_object_or_404(Post, pk=pk, status=Post.Status.PUBLISHED)
-    comment=post.comment.filter(is_active=True)
-    form=CommentForm()
-    context = {"post":post,"form":form,'comment':comment}
-    return render(request, template_name='blog/post-detail.html', context=context)
+#     post = get_object_or_404(Post, pk=pk, status=Post.Status.PUBLISHED)
+#     comment=post.comment.filter(is_active=True)
+#     form=CommentForm()
+#     context = {"post":post,"form":form,'comment':comment}
+#     return render(request, template_name='blog/post-detail.html', context=context)
 
 def ticket(request):
     if request.method == "POST":
@@ -198,28 +209,28 @@ def delete_image(request, image_id):
 
 
 # we use (django.contrib.auth) for user_login
-def user_login(request):
-    if request.method == "POST":
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(
-                request,
-                username=cd['user_name'],
-                password=cd['password']
-            )
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('blog:profile')  # به صفحه اصلی یا هر URL دیگری
-                else:
-                    return HttpResponse("کاربر غیر فعال است")
-            else:
-                return HttpResponse("پسورد یا نام کاربری درست نیست")
-    else:
-        form = LoginForm()
+# def user_login(request):
+#     if request.method == "POST":
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             cd = form.cleaned_data
+#             user = authenticate(
+#                 request,
+#                 username=cd['user_name'],
+#                 password=cd['password']
+#             )
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return redirect('blog:profile')  # به صفحه اصلی یا هر URL دیگری
+#                 else:
+#                     return HttpResponse("کاربر غیر فعال است")
+#             else:
+#                 return HttpResponse("پسورد یا نام کاربری درست نیست")
+#     else:
+#         form = LoginForm()
     
-    return render(request, 'forms/login.html', {'form': form})
+#     return render(request, 'forms/login.html', {'form': form})
 
 
 def user_logout(request):
