@@ -12,6 +12,7 @@ from .models import Ticket, Image
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.postgres.search import TrigramSimilarity
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 def index(request):
     # posts = Post.published.all()
@@ -225,3 +226,17 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('blog:index')
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            messages.success(request, "Your account has been created successfully! You can now log in.")
+            return redirect('blog:login')
+    else:
+        form = UserRegisterForm()
+
+    return render(request, 'registration/register.html', {'form': form})

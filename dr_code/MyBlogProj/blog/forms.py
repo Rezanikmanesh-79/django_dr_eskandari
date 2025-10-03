@@ -1,6 +1,5 @@
 from django import forms
-
-from blog.models import Comment, Post
+from blog.models import Comment, Post, User
 
 
 class TicketForm(forms.Form):
@@ -48,3 +47,21 @@ class SearchForm(forms.Form):
 class LoginForm(forms.Form):
     user_name = forms.CharField(max_length=250, required=True)
     password = forms.CharField(max_length=250,required=True, widget=forms.PasswordInput)
+
+class UserRegisterForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput, label="Confirm password")
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email', 'password']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        password2 = cleaned_data.get("password2")
+
+        if password and password2 and password != password2:
+            raise forms.ValidationError("Passwords do not match")
+
+        return cleaned_data
