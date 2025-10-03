@@ -49,5 +49,6 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ['id','post','title','created_at']
     ordering = ('post',)
 
-
-
+@admin.register(Account)
+class AccountAdmin(admin.ModelAdmin):
+    list_display = ['user','bio','job','date_of_birth','photo',]

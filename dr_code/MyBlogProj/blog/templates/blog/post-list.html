@@ -5,7 +5,12 @@
 {% block title %}posts{% endblock %}
 
 {% block content %}
-    <h1>Post List</h1>
+    {% if category %}
+    <h1>list of post of {{ category }}</h1>
+    {% else %}
+        <h1>Post List</h1>
+    {% endif %}
+
     {% if message %}
         <p>
             {{ message }}

@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 
 from .forms import *
-from .models import Ticket, Image
+from .models import Ticket, Image, Account
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.postgres.search import TrigramSimilarity
 from django.contrib.auth import authenticate, login, logout
@@ -23,30 +23,35 @@ def index(request):
     return render(request, 'blog/index.html', context)
     # return HttpResponse('Hello guys! Have a good day.')
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-def post_list(request):
+def post_list(request, category=None):
     posts = Post.published.all()
-    # paginator = Paginator(posts, 5)
-    paginator = Paginator(posts, 2)
+
+    # Filter by category if provided
+    if category:
+        posts = posts.filter(category=category)
+
+    # Pagination
+    paginator = Paginator(posts, 2)  # 2 posts per page
     page_number = request.GET.get('page', 1)
     message = None
+
     try:
         posts = paginator.page(page_number)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-        message = 'صفحه ای با یان شماره نداریم و آخرین صفحه را به شما نشان داده ایم'
-
+        message = 'صفحه ای با این شماره نداریم و آخرین صفحه را نشان داده‌ایم.'
     except PageNotAnInteger:
         posts = paginator.page(1)
 
     context = {
         'posts': posts,
         'message': message,
+        'category': category,
     }
-    # print(posts[0].images.first().image_file.url)
-    # context = {'posts': posts}
-    return render(request, 'blog/post-list.html', context)
 
+    return render(request, 'blog/post-list.html', context)
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, id=pk, status=Post.Status.PUBLISHED)
@@ -235,8 +240,29 @@ def register(request):
             user.set_password(form.cleaned_data['password'])
             user.save()
             messages.success(request, "Your account has been created successfully! You can now log in.")
-            return redirect('blog:login')
+            Account.objects.create(user=user)
+            return redirect('registration/register_done.html')
     else:
         form = UserRegisterForm()
 
     return render(request, 'registration/register.html', {'form': form})
+
+@login_required
+def edit_account(request):
+    if request.method == 'POST':
+        user_form = UserRegisterForm(request.POST, request.FILES, instance=request.user)
+        account_form = AccountEditForm(request.POST, request.FILES, instance=request.user.account)
+        if user_form.is_valid() and account_form.is_valid():
+            user_form.save()
+            account_form.save()
+            messages.success(request, "Your account was updated successfully!")
+            return redirect("profile")  # or another page
+    else:
+        user_form = UserRegisterForm(instance=request.user)
+        account_form = AccountEditForm(instance=request.user.account)
+
+    context = {
+        'user_form': user_form,
+        'account_form': account_form
+    }
+    return render(request, 'registration/edit-account.html', context)

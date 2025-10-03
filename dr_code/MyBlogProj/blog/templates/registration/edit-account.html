@@ -1,0 +1,16 @@
+{% extends 'parent/base.html' %}
+
+{% block title %}
+    User Edit
+{% endblock %}
+
+{% block content %}
+<h1>Editing Personal info</h1>
+<p>You are editing personal info</p>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ account_form.as_p }}
+    <input type="submit" value="Save">
+</form>
+{% endblock %}

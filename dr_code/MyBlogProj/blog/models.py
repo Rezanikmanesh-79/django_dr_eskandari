@@ -19,6 +19,13 @@ class Post(models.Model):
         PUBLISHED = 'PB', 'published'
         REJECTED = 'RJ', 'rejected'
 
+    CATEGORY_CHOICES = (
+        ('technology','technology'),
+        ('programming','programming'),
+        ('ai','ai'),
+        ('other','other'),
+    )
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES,default='other')
     status = models.CharField(max_length=10, choices=Status.choices, default=Status.DRAFT, verbose_name='وضعیت')
     title = models.CharField(max_length=50, verbose_name="عنوان")
     content = models.TextField()
@@ -118,3 +125,13 @@ class Image(models.Model):
         verbose_name_plural = 'تصاویر'
         ordering = ['-created_at']
         indexes = [models.Index(fields=['-created_at'])]
+
+class Account(models.Model):
+    user = models.OneToOneField(User,related_name='account',on_delete=models.CASCADE)
+    date_of_birth=jmodels.jDateTimeField(blank=True,null=True)
+    bio = models.TextField(null=True, blank=True)
+    job = models.CharField(max_length=100,null=True, blank=True)
+    photo = ResizedImageField(upload_to='account_image', size=[500,500],quality=75, crop=['middle', 'center'],blank=True,null=True)
+
+    def __str__(self):
+        return self.user.username

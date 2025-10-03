@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import Comment, Post, User
+from blog.models import Comment, Post, User, Account
 
 
 class TicketForm(forms.Form):
@@ -37,7 +37,7 @@ class CreatePostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['title', 'content', 'read_time']
+        fields = ['title', 'content', 'read_time','category']
 
 
 class SearchForm(forms.Form):
@@ -65,3 +65,13 @@ class UserRegisterForm(forms.ModelForm):
             raise forms.ValidationError("Passwords do not match")
 
         return cleaned_data
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', ]
+
+class AccountEditForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['bio', 'job','date_of_birth','photo']

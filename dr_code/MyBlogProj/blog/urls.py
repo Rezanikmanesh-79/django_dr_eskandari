@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('posts/', views.post_list, name='post-list'),
     path('posts/<int:pk>/', views.post_detail, name='post-detail'),
+    path('posts/<str:category>/', views.post_list, name='post-list-category'),
     path('ticket/', views.ticket, name='ticket'),
     path('posts/<int:id>/comment', views.post_comment, name='post-comment'),
     path('create_post/', views.create_post, name="create-post"),
@@ -18,5 +19,5 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('register/', views.register, name='register'),
-
+    path("account/edit/", views.edit_account, name="edit-account")
 ]
