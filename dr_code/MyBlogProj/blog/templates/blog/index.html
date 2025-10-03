@@ -1,21 +1,51 @@
 {% extends 'parent/base.html' %}
 {% load blog_tags %}
-{% block title %}
-    My Blog
-{% endblock %}
-{% block content %}
-    <h2> آمار</h2>
-    <p>تعداد پست ها : {% total_posts %}</p>
-    <p> تعداد کامنت ها:{% total_comments %}</p>
-    <p> تاریخ درج آخرین پست:{% last_post_date %}</p>
-    {% latest_post 3 %}
-    <h2> محبوب ترین پست ها</h2>
-    {% most_popular_posts 3 as pop_posts %}
-    {% for post in pop_posts %}
-        <br>
-        <a href='{{ post.get_absolute_url }}'>{{ post.title }}</a>
-        {% empty %}
-        هنوز پستی درج نشده است!
-    {% endfor %}
 
+{% block title %}My Blog{% endblock %}
+
+{% block content %}
+<div class="main-container">
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="hero-title">آمار وبلاگ من</h1>
+        <p class="hero-subtitle">اطلاعات کلی و محبوب‌ترین پست‌ها</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="blog-post">
+        <h2 class="post-title">آمار</h2>
+        <p>تعداد پست‌ها: <strong>{% total_posts %}</strong></p>
+        <p>تعداد کامنت‌ها: <strong>{% total_comments %}</strong></p>
+        <p>تاریخ درج آخرین پست: <strong>{% last_post_date %}</strong></p>
+    </div>
+
+    <!-- Latest Posts -->
+    <div class="blog-post">
+        <h2 class="post-title">آخرین پست‌ها</h2>
+        {% latest_post 3 %}
+    </div>
+
+    <!-- Most Popular Posts -->
+    <div class="blog-post">
+        <h2 class="post-title">محبوب‌ترین پست‌ها</h2>
+        {% most_popular_posts 3 as pop_posts %}
+        {% for post in pop_posts %}
+            <div class="blog-post">
+                <h3 class="post-title">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </h3>
+                <p class="post-meta">بازدید: {{ post.views }} — تاریخ: {{ post.publish|date:"Y/m/d H:i" }}</p>
+                {% if post.body|length > 200 %}
+                    <p>{{ post.body|truncatechars:200 }}</p>
+                {% else %}
+                    <p>{{ post.body }}</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <div class="empty-state">هنوز پستی درج نشده است!</div>
+        {% endfor %}
+    </div>
+
+</div>
 {% endblock %}

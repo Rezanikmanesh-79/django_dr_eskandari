@@ -1,16 +1,23 @@
 {% extends 'parent/base.html' %}
 
-{% block title %}
-    User Edit
-{% endblock %}
+{% block title %}Edit Profile{% endblock %}
 
 {% block content %}
-<h1>Editing Personal info</h1>
-<p>You are editing personal info</p>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    {{ account_form.as_p }}
-    <input type="submit" value="Save">
-</form>
+<div class="main-container">
+    <!-- Hero section with Matrix glow -->
+    <div class="hero-section">
+        <h1 class="hero-title">Editing Personal Info</h1>
+        <p class="hero-subtitle">Update your profile and account details below.</p>
+    </div>
+
+    <!-- Matrix-style form box -->
+    <div class="blog-post">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ account_form.as_p }}
+            <input type="submit" value="Save" class="cta-button">
+        </form>
+    </div>
+</div>
 {% endblock %}

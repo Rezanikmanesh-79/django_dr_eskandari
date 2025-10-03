@@ -33,7 +33,7 @@ def post_list(request, category=None):
         posts = posts.filter(category=category)
 
     # Pagination
-    paginator = Paginator(posts, 2)  # 2 posts per page
+    paginator = Paginator(posts, 1)  # 2 posts per page
     page_number = request.GET.get('page', 1)
     message = None
 

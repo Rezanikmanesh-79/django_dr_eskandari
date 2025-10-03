@@ -6,34 +6,35 @@
 
 {% block content %}
     {% if category %}
-    <h1>list of post of {{ category }}</h1>
+        <h1>List of posts in {{ category }}</h1>
     {% else %}
         <h1>Post List</h1>
     {% endif %}
 
     {% if message %}
-        <p>
-            {{ message }}
-        </p>
+        <p>{{ message }}</p>
     {% endif %}
-    <ol style="--length: 5" role="list">
 
+    <div class="blog-grid">
         {% for post in posts %}
+            <div class="blog-post">
+                <!-- Fancy cyberpunk post title -->
+                <h3 class="post-title">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title|safe }}</a>
+                </h3>
 
-            <li style="--i: {{ forloop.counter }}">
-                <h3><a href="{{ post.get_absolute_url }}"> {{ post.title }}</a></h3>
-                <p>{{ post.content | truncatewords:5 }}</p>
+                <p>{{ post.content|truncatewords:5 }}</p>
+
                 {% if post.images.first %}
-
-                <p class="post-image">
-                    <img src="{{ post.images.first.image_file.url }}" alt="{{ post.title}}">
-                </p>
+                    <p class="post-image">
+                        <img src="{{ post.images.first.image_file.url }}" alt="{{ post.title }}">
+                    </p>
                 {% endif %}
 
                 <p>Posted by: {{ post.author }}</p>
-            </li>
-            <br>
+            </div>
         {% endfor %}
-    </ol>
+    </div>
+
     {% include 'partials/pagination.html' with page=posts %}
 {% endblock %}

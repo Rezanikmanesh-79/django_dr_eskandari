@@ -1,13 +1,55 @@
 {% extends 'parent/base.html' %}
 
-{% block title %} Search results {% endblock %}
+{% block title %}Search Results{% endblock %}
 
 {% block content %}
-    <h2>Search Results for {{ query }}</h2>
-    <h3> {{ results.count }} results </h3>
-    <ul>
-        {% for result in results %}
-            <li><a href="{{ result.get_absolute_url }}">{{ result }}</a><br>{{ result.content|truncatewords:5 }}</li>
-        {% endfor %}
-    </ul>
+<div class="main-container">
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="hero-title">نتایج جستجو</h1>
+        <p class="hero-subtitle">نتایج جستجو برای: <strong>{{ query }}</strong></p>
+        <p>{{ results.count }} نتیجه یافت شد</p>
+    </div>
+
+    {% if results %}
+        <div class="blog-grid">
+            {% for result in results %}
+                <div class="blog-post">
+                    <!-- Glowing Post Title -->
+                    <h3 class="post-title">
+                        <a href="{{ result.get_absolute_url }}">
+                            {{ result.title|safe }}
+                        </a>
+                    </h3>
+
+                    <!-- Optional Image -->
+                    {% if result.images.first %}
+                        <p class="post-image">
+                            <img src="{{ result.images.first.image_file.url }}" alt="{{ result.title }}">
+                        </p>
+                    {% endif %}
+
+                    <!-- Excerpt -->
+                    <p class="post-excerpt">{{ result.content|truncatewords:20 }}</p>
+
+                    <!-- Meta -->
+                    <p class="post-meta">
+                        Posted by: {{ result.author }} | {{ result.publish|jformat:"%Y-%m-%d %H:%M" }}
+                    </p>
+
+                    <!-- Read More -->
+                    <a class="read-more" href="{{ result.get_absolute_url }}">Read More →</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% include 'partials/pagination.html' with page=results %}
+    {% else %}
+        <p style="text-align:center; font-size:1.2rem; color:#00ff00;">
+            هیچ نتیجه‌ای یافت نشد.
+        </p>
+    {% endif %}
+</div>
 {% endblock %}

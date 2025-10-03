@@ -2,59 +2,61 @@
 {% load jformat %}
 {% load blog_tags %}
 {% load static %}
-{% block title %}
-    Post Detail
-{% endblock %}
+
+{% block title %}Post Detail{% endblock %}
+
 {% block content %}
-    <h1> Post detail</h1>
-    <h2> {{ post.title }} by : {{ post.author }}</h2>
-    <p> {{ post.content | markdown }}</p>
-    <div>
-    {% for image in post.images.all %}
-        <br>
-        <<div class="image">
-        <img src="{{ image.image_file.url }}" alt="{{ image.title }}">
-    {%empty%}
-        <p>تصویری وجود ندارد!</p>
-    {% endfor %}
-
+<div class="main-container">
+    <!-- Post Header -->
+    <div class="hero-section blog-post">
+        <h1 class="hero-title">{{ post.title|safe }}</h1>
+        <p class="post-meta">نوشته شده توسط: <strong>{{ post.author }}</strong> | {{ post.publish|jformat }}</p>
     </div>
-    <br>
-    {{ post.publish| jformat }}
-    {#    {{ new_date|date:'Y/m/d' }}#}
 
-    <!-- Comments START -->
-    <div>
-        {% with comments.count as cm_count %}
-            <h3> {{ cm_count }} دیدگاه </h3>
-        {% endwith %}
-        <!-- Comment level 1-->
-        {% for cm in comments %}
-            <div>
-                {{ cm.name }}
-                <br>
-                {{ post.created}}
+    <!-- Post Content -->
+    <div class="blog-post">
+        <p class="post-excerpt">{{ post.content|markdown }}</p>
 
-                <p>{{ cm.content|linebreaks }}</p>
+        <!-- Post Images -->
+        {% if post.images.exists %}
+            <div class="post-images">
+                {% for image in post.images.all %}
+                    <div class="image">
+                        <img src="{{ image.image_file.url }}" alt="{{ image.title }}" style="max-width:100%; border:1px solid #00ff00; border-radius:6px; margin-bottom:1rem;">
+                    </div>
+                {% endfor %}
             </div>
-
-            {% empty %}
-            <p>کامنتی وجود ندارد!</p>
-        {% endfor %}
+        {% else %}
+            <p>تصویری وجود ندارد!</p>
+        {% endif %}
     </div>
-    <!-- Comments END -->
-    <div>
+
+    <!-- Comments Section -->
+    <div class="blog-post" style="margin-top:2rem;">
+        <h3>{{ comments.count }} دیدگاه</h3>
+        {% if comments.exists %}
+            {% for cm in comments %}
+                <div class="comment" style="border-left: 3px solid #00ff00; padding-left:1rem; margin-bottom:1rem;">
+                    <p><strong>{{ cm.name }}</strong> | {{ cm.created|jformat }}</p>
+                    <p>{{ cm.content|linebreaks }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>کامنتی وجود ندارد!</p>
+        {% endif %}
+    </div>
+
+    <!-- Comment Form -->
+    <div class="blog-post" style="margin-top:2rem;">
         <h3>ثبت دیدگاه</h3>
         <small>آدرس ایمیل شما منتشر نخواهد شد.</small>
         <form method="POST" action="{% url 'blog:post-comment' post.id %}">
             {% csrf_token %}
-
             {{ form.as_div }}
-
             <div class="col-12">
-                <button type="submit">ثبت</button>
+                <button type="submit" class="cta-button">ثبت</button>
             </div>
         </form>
     </div>
+</div>
 {% endblock %}
-

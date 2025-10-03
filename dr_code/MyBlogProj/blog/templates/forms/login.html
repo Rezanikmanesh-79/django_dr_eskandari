@@ -1,11 +1,22 @@
 {% extends 'parent/base.html' %}
-{% block title %}login{% endblock %}
+
+{% block title %}Login{% endblock %}
+
 {% block content %}
-    <h1>ورود</h1>
-    <p>اطلاعات کاربری خود را وارد کنید</p>
-    <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="ورود" >
-    </form>
+<div class="main-container">
+    <!-- Hero section -->
+    <div class="hero-section">
+        <h1 class="hero-title">ورود</h1>
+        <p class="hero-subtitle">اطلاعات کاربری خود را وارد کنید</p>
+    </div>
+
+    <!-- Login form -->
+    <div class="blog-post">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="ورود" class="cta-button">
+        </form>
+    </div>
+</div>
 {% endblock %}

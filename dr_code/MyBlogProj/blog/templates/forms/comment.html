@@ -1,18 +1,24 @@
 {% extends 'parent/base.html' %}
-{% block title %}
-    Post Comment
-{% endblock %}
+{% block title %}Post Comment{% endblock %}
 
 {% block content %}
-    <form method="POST" action="{% url 'blog:post-comment' post.id %}">
+<div class="main-container">
+    <div class="hero-section">
+        <h1 class="hero-title">ثبت دیدگاه</h1>
+        <p class="hero-subtitle">دیدگاه خود را برای این پست ثبت کنید. پس از تایید، در وبلاگ نمایش داده خواهد شد.</p>
+    </div>
+
+    <form method="POST" action="{% url 'blog:post-comment' post.id %}" class="blog-post">
         {% csrf_token %}
         {{ form.as_div }}
-        <div class="col-12">
-            <button type="submit">ثبت</button>
-        </div>
+        <button type="submit" class="cta-button">ثبت</button>
     </form>
+
     {% if comment %}
-        دیدگاه شما برای ادمین ارسال شد. در صورت تایید به زودی در وبلاگ نمایش داده می شود
-        <a href="{{ post.get_absolute_url }}">بازگشت به صفحه پست</a>
+        <div class="blog-post" style="margin-top: 1rem;">
+            <p>دیدگاه شما برای ادمین ارسال شد. در صورت تایید به زودی در وبلاگ نمایش داده می شود.</p>
+            <a href="{{ post.get_absolute_url }}" class="cta-button" style="background: transparent; border: 1px solid #00ff00; color: #00ff00;">بازگشت به صفحه پست</a>
+        </div>
     {% endif %}
+</div>
 {% endblock %}

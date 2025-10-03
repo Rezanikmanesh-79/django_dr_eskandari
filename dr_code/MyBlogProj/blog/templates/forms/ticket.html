@@ -1,26 +1,39 @@
 {% extends 'parent/base.html' %}
-{% block title %}
-    Ticket Form
-{% endblock %}
+
+{% block title %}Ticket Form{% endblock %}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {#        {{ form.as_table }}#}
-        {% for field in form %}
+<div class="main-container">
+    <div class="hero-section">
+        <h1 class="hero-title">Ticket Form</h1>
+        <p class="hero-subtitle">Submit your ticket or message below.</p>
+    </div>
+
+    <div class="blog-post">
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-field">
+                    {{ field.label_tag }}<br>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="field-errors">
+                            {% for error in field.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <br>
+            {% endfor %}
+
+            <div class="form-field">
+                <label for="id_message">Message:</label><br>
+                <input type="text" name="message" id="id_message">
+            </div>
             <br>
-            {{ field.label }} {{ field }}
-        {% endfor %}
-        <input type="text" name="message">
-        <input type="submit" value="ذخیره">
-    </form>
-    {% if form.errors %}
-        {% for field in form %}
-            {% if field.errors %}
-                {% for error in field.errors %}
-                    {{ field.label }} : {{ error }}
-                {% endfor %}
-            {% endif %}
-        {% endfor %}
-    {% endif %}
+            <input type="submit" value="ذخیره" class="cta-button">
+        </form>
+    </div>
+</div>
 {% endblock %}

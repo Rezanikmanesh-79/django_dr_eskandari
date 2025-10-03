@@ -1,37 +1,3 @@
-{#{% extends 'parent/base.html' %}#}
-{#{% load static %}#}
-{#{% load jformat %}#}
-{##}
-{#{% block title %}User Profile{% endblock %}#}
-{##}
-{#{% block content %}#}
-{#    <p> <a href="{% url 'blog:create-post' %}" >ایجاد پست جدید</a></p>#}
-{#<table>#}
-{#    <tr>#}
-{#        <th>ردیف</th>#}
-{#        <th>پست</th>#}
-{#        <th>مشاهده</th>#}
-{#        <th>ویرایش</th>#}
-{#        <th>حذف</th>#}
-{#    </tr>#}
-{#    {% for post in posts %}#}
-{#        <tr>#}
-{#            <td>{{ forloop.counter }}</td>#}
-{#            <td>{{ post.title }}</td>#}
-{#            <td><a href="{{ post.get_absolute_url}}">مشاهده</a></td>#}
-{#            <td><a href="{% url 'blog:edit-post' post.id %}">ویرایش</a></td>#}
-{#            <td><a href="{% url 'blog:delete-post' post.id %}">حذف</a></td>#}
-{#        </tr>#}
-{##}
-{#    {% empty %}#}
-{#        <tr>#}
-{#            <td colspan="5">هی�� پستی یافت نشد.</td>#}
-{#        </tr>#}
-{#{% endfor %}#}
-{#</table>#}
-{#{% endblock %}#}
-
-
 {% extends 'parent/base.html' %}
 {% load static %}
 {% load jformat %}
@@ -39,85 +5,40 @@
 {% block title %}User Profile{% endblock %}
 
 {% block content %}
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f0f8ff;
-        color: #333;
-    }
+<div class="main-container profile-page">
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        background-color: #fff;
-    }
+    <div class="action-bar">
+        <a href="{% url 'blog:create-post' %}" class="cta-button create-post">ایجاد پست جدید</a>
+    </div>
 
-    th, td {
-        padding: 12px;
-        border: 1px solid #ddd;
-        text-align: center;
-    }
+    <div class="table-container">
+        <table class="neon-table">
+            <thead>
+                <tr>
+                    <th>ردیف</th>
+                    <th>پست</th>
+                    <th>مشاهده</th>
+                    <th>ویرایش</th>
+                    <th>حذف</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
+                        <td><a href="{{ post.get_absolute_url }}" class="action-link">مشاهده</a></td>
+                        <td><a href="{% url 'blog:edit-post' post.id %}" class="action-link">ویرایش</a></td>
+                        <td><a href="{% url 'blog:delete-post' post.id %}" class="action-link delete-link">حذف</a></td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="empty-state">هیچ پستی یافت نشد.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    th {
-        background-color: #4caf50;
-        color: white;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    tr:hover {
-        background-color: #ddd;
-    }
-
-    a {
-        text-decoration: none;
-        color: #4caf50;
-        font-weight: bold;
-    }
-
-    a:hover {
-        color: #066;
-    }
-
-    .create-post {
-        margin: 10px 0;
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #4caf50;
-        color: #fff;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .create-post:hover {
-        background-color: #45a049;
-    }
-</style>
-
-<p><a href="{% url 'blog:create-post' %}" class="create-post">ایجاد پست جدید</a></p>
-<table>
-    <tr>
-        <th>ردیف</th>
-        <th>پست</th>
-        <th>مشاهده</th>
-        <th>ویرایش</th>
-        <th>حذف</th>
-    </tr>
-    {% for post in posts %}
-        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ post.title }}</td>
-            <td><a href="{{ post.get_absolute_url }}">مشاهده</a></td>
-            <td><a href="{% url 'blog:edit-post' post.id %}">ویرایش</a></td>
-            <td><a href="{% url 'blog:delete-post' post.id %}">حذف</a></td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="5">هیچ پستی یافت نشد.</td>
-        </tr>
-    {% endfor %}
-</table>
+</div>
 {% endblock %}

@@ -1,15 +1,18 @@
 {% extends 'parent/base.html' %}
 
-{% block title %}
-    Register
-{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block content %}
-<h1>Register new user</h1>
+<div class="main-container">
+    <div class="hero-section">
+        <h1 class="hero-title">Register New User</h1>
+        <p class="hero-subtitle">Create your account to join the Matrix experience.</p>
+    </div>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Register">
-</form>
+    <form method="post" class="blog-post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Register" class="cta-button">
+    </form>
+</div>
 {% endblock %}

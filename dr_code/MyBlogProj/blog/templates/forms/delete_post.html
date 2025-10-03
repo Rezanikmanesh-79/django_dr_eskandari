@@ -1,12 +1,23 @@
 {% extends 'parent/base.html' %}
 {% load jformat %}
 {% load static %}
-{% block title %}delete post{% endblock %}
+
+{% block title %}Delete Post{% endblock %}
+
 {% block content %}
-    <h2>آیا از حذف پست {{ post.title }} اطمینان دارید؟</h2>
-    <a href="{% url 'blog:profile' %}">بازگشت</a>
-    <form method="post">
-        {% csrf_token %}
-        <input type="submit" value="حذف">
-    </form>
+<div class="main-container">
+    <div class="hero-section">
+        <h1 class="hero-title">حذف پست</h1>
+        <p class="hero-subtitle">آیا از حذف پست "{{ post.title }}" اطمینان دارید؟</p>
+    </div>
+
+    <div class="blog-post">
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="حذف" class="cta-button">
+        </form>
+        <br>
+        <a href="{% url 'blog:profile' %}" class="cta-button" style="background: transparent; color:#00ff00; border:2px solid #00ff00;">بازگشت</a>
+    </div>
+</div>
 {% endblock %}
