@@ -10,6 +10,7 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         ('Additional Info', {
             'fields': (
+                'email',
                 'first_name',
                 'last_name',
                 'bio',

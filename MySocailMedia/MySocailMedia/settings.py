@@ -135,8 +135,9 @@ AUTH_USER_MODEL = 'social.User'
 # cuz we want to use our auth system we do this
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # defult login
-    # we should make authenticateion.py in social and inside of that we make class name PhoneAuthBackend
-    'social.authenticateion.PhoneAuthBackend',      # our login user can login with pjone
+    # we should make "authenticateion.py" in social and inside of that we make class name "PhoneAuthBackend"
+    'social.authenticateion.PhoneAuthBackend',      # our user can login with phone
+    'social.authenticateion.EmailAuthBackend',       # login with email
 ]
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
