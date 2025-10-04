@@ -146,7 +146,7 @@ def post_search(request):
     context = {'form': form, 'query': q, 'results': results}
     return render(request, 'blog/post-search.html', context)
 
-
+@login_required
 def profile(request):
     user = request.user
     posts = Post.published.filter(author=user)

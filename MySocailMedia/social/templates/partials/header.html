@@ -1,0 +1,34 @@
+{#<header class="header">#}
+{#    <div class="nav-container">#}
+{#    <!-- Logo Text -->#}
+{#    <div class="logo">#}
+{#        <a href="{% url 'blog:index' %}" class="sexy-logo">My Weblog</a>#}
+{#    </div>#}
+{##}
+{##}
+{#        <!-- Navigation Links -->#}
+{#        <nav class="nav-menu">#}
+{#            <a href="{% url 'blog:profile' %}" class="nav-link">پروفایل</a>#}
+{##}
+{#            {% if request.user.is_authenticated %}#}
+{#                <div class="user-links">#}
+{#                    <a href="#" class="nav-link">{{ request.user.first_name|default:request.user.username }}</a>#}
+{#                    <a href="{% url 'blog:edit-account' %}" class="nav-link">ویرایش اطلاعات</a>#}
+{#                    <a href="{% url 'blog:logout' %}" class="nav-link">خروج</a>#}
+{#                </div>#}
+{#            {% else %}#}
+{#                <div class="auth-links">#}
+{#                    <a href="{% url 'blog:login' %}" class="nav-link">ورود</a>#}
+{#                    <a href="{% url 'blog:register' %}" class="nav-link">ثبت‌نام</a>#}
+{#                </div>#}
+{#            {% endif %}#}
+{#        </nav>#}
+{#        <a href="{% url 'blog:post-list' %}" class="nav-link">Post List</a>#}
+{##}
+{#        <!-- Search Form -->#}
+{#        <form method="get" action="{% url 'blog:search' %}" class="search-form">#}
+{#            <input type="text" name="query" required placeholder="جستجو..." class="search-input">#}
+{#            <button type="submit" class="search-btn">🔍</button>#}
+{#        </form>#}
+{#    </div>#}
+{#</header>#}
