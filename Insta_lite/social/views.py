@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post
 from .forms import LoginForm, UserRegisterForm, UserEditForm, TicketForm
 from django.core.mail import send_mail
+from taggit.models import Tag
 
 
 def user_login(request):
@@ -81,27 +82,46 @@ def edit_user(request):
     return render(request, 'registration/edit-user.html', context)
 
 
+def post_list(request, tag_slug=None):
+    posts = Post.objects.all()
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        posts = posts.filter(tags__in=[tag])
+    context = {
+        'posts': posts,
+        'tag': tag
+    }
+    return render(request, 'social/list.html', context)
+@login_required
+
 def ticket(request):
-    sent = False
     if request.method == 'POST':
         form = TicketForm(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data
-            subject = cd['subject']
-            message = cd['message']
-            # email=cd['email']
-            send_mail(subject, message, 'python.django.1404.1@gmail.com', ['eskandary.a@gmail.com'], fail_silently=False)
-            sent = True
+            # For example, send an email or save the ticket
+            form.save()
+            return HttpResponse('Ticket submitted successfully!')
     else:
         form = TicketForm()
 
-    return render(request, 'forms/ticket.html', {'form': form, 'sent': sent})
+    return render(request, 'social/ticket.html', {'form': form})
 
+@login_required
+def post_create(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            form.save_m2m()  # ✅ Save tags and other many-to-many relationships
+            return redirect('social:post-list')
+    else:
+        form = PostForm()
 
-def post_list(request):
-    posts = Post.objects.all()
-    context = {
-        'posts': posts
-    }
-    return render(request, 'social/list.html', context)
+    return render(request, 'social/post_form.html', {'form': form})
 
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+    return render(request, 'social/post_detail.html', {'post': post})
