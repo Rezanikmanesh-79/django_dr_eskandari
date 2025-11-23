@@ -30,8 +30,12 @@ class Post(models.Model):
     # relations
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_posts', verbose_name="نویسنده")
 
+
+    likes = models.ManyToManyField(User, related_name='liked_posts', blank=True, verbose_name="لایک‌ها")
+
+
     def get_absolute_url(self):
-        return reverse('blog:post-detail', args=[self.id])
+        return reverse('social:post-detail', args=[self.id])
 
     def __str__(self):
         return f'{self.title} by {self.author.username}'
@@ -46,7 +50,7 @@ class Post(models.Model):
             storage.delete(path)
 
         super().delete(*args, **kwargs)
-
+    
     class Meta:
         ordering = ['-created']
 

@@ -140,10 +140,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'social.User'
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',   # defult login
-    # we should make "authentication.py" in social and inside of that we make class name "PhoneAuthBackend"
-    'social.authentication.PhoneAuthBackend',# our user can login with phone
-    'social.authentication.EmailAuthBackend' # login with email
+    'django.contrib.auth.backends.ModelBackend',
+    'social.authentication.PhoneAuthBackend',
+    'social.authentication.EmailAuthBackend'
 ]
 
 LOGIN_REDIRECT_URL = ''

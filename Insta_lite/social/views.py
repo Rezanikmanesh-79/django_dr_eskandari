@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-# Remove unused import; add specific model imports if needed, e.g.:
+from django.views.decorators.http import require_POST
 from .models import Post
-from .forms import LoginForm, UserRegisterForm, UserEditForm, TicketForm
+from .forms import LoginForm, UserRegisterForm, UserEditForm, TicketForm, CreatePostForm
 from django.core.mail import send_mail
 from taggit.models import Tag
+
 
 
 def user_login(request):
@@ -82,46 +83,83 @@ def edit_user(request):
     return render(request, 'registration/edit-user.html', context)
 
 
-def post_list(request, tag_slug=None):
-    posts = Post.objects.all()
-    tag = None
-    if tag_slug:
-        tag = get_object_or_404(Tag, slug=tag_slug)
-        posts = posts.filter(tags__in=[tag])
-    context = {
-        'posts': posts,
-        'tag': tag
-    }
-    return render(request, 'social/list.html', context)
-@login_required
-
 def ticket(request):
+    sent = False
     if request.method == 'POST':
         form = TicketForm(request.POST)
         if form.is_valid():
-            # For example, send an email or save the ticket
-            form.save()
-            return HttpResponse('Ticket submitted successfully!')
+            cd = form.cleaned_data
+            subject = cd['subject']
+            message = cd['message']
+            # email=cd['email']
+            send_mail(subject, message, 'python.django.1404.1@gmail.com', ['eskandary.a@gmail.com'], fail_silently=False)
+            sent = True
     else:
         form = TicketForm()
 
-    return render(request, 'social/ticket.html', {'form': form})
+    return render(request, 'forms/ticket.html', {'form': form, 'sent': sent})
+
+
+def post_list(request, tag_slug=None):
+    posts = Post.objects.all()
+
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag,slug=tag_slug)
+        posts = posts.filter(tags__in=[tag])
+    context = {
+        'posts': posts,
+        'tag': tag,
+    }
+    return render(request, 'social/list.html', context)
+
+
 
 @login_required
 def post_create(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
+    if request.method == "POST":
+        form = CreatePostForm(request.POST)
         if form.is_valid():
+            # Save the Post instance with author
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            form.save_m2m()  # ✅ Save tags and other many-to-many relationships
-            return redirect('social:post-list')
-    else:
-        form = PostForm()
+            form.save_m2m()  # Save tags
 
-    return render(request, 'social/post_form.html', {'form': form})
+            # # Create Image objects only if images are provided
+            # if form.cleaned_data['image1']:
+            #     Image.objects.create(image_file=form.cleaned_data['image1'], post=post)
+            # if form.cleaned_data['image2']:
+            #     Image.objects.create(image_file=form.cleaned_data['image2'], post=post)
+
+            return redirect('social:post-list')
+        else:
+            print(form.errors)
+    else:
+        form = CreatePostForm()
+    return render(request, 'forms/create-post.html', {'form': form, 'is_edit': False})
+
 
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
-    return render(request, 'social/post_detail.html', {'post': post})
+    return render(request, 'social/detail.html', {'post': post})
+
+
+@login_required
+@require_POST
+def post_like(request):
+    post_id = request.POST.get('post_id')
+    post = get_object_or_404(Post, id=post_id)
+    user = request.user
+    if user in post.likes.all():
+        post.likes.remove(user)
+        liked = False
+    else:
+        post.likes.add(user)
+        liked = True
+    post_like_count = post.likes.count()
+    response_data = {
+        'liked': liked,
+        'post_like_count': post_like_count,
+    }
+    return JsonResponse(response_data)
