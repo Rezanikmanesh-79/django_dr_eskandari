@@ -1,0 +1,23 @@
+{% for post in posts %}
+<li class="post-item post" data-post-id="{{ post.id }}" id="post-{{ post.id }}">
+
+    <a href="{% url 'social:post_detail' post.id %}">{{ post.title }}</a>
+
+    <p>{{ post.content|truncatewords:40 }}</p>
+
+    <p>Author: {{ post.author.username }}</p>
+    <p>Created: {{ post.created|date:"Y-m-d H:i" }}</p>
+
+    <!-- LIKE -->
+    <button class="like-button">
+        {% if user in post.likes.all %}Unlike{% else %}Like{% endif %}
+    </button>
+    <span class="likes-count">{{ post.likes.count }}</span> Likes
+
+    <!-- SAVE -->
+    <button class="save-button">
+        {% if user in post.save_by.all %}Unsave{% else %}Save{% endif %}
+    </button>
+
+</li>
+{% endfor %}

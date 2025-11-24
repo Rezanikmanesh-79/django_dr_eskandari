@@ -7,7 +7,7 @@ from .models import Post
 from .forms import LoginForm, UserRegisterForm, UserEditForm, TicketForm, CreatePostForm
 from django.core.mail import send_mail
 from taggit.models import Tag
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def user_login(request):
@@ -101,17 +101,36 @@ def ticket(request):
 
 
 def post_list(request, tag_slug=None):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-created')
 
     tag = None
     if tag_slug:
-        tag = get_object_or_404(Tag,slug=tag_slug)
+        tag = get_object_or_404(Tag, slug=tag_slug)
         posts = posts.filter(tags__in=[tag])
-    context = {
-        'posts': posts,
-        'tag': tag,
-    }
-    return render(request, 'social/list.html', context)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(posts, 1)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    # AJAX Load More
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return render(
+            request,
+            'social/list-ajax.html',
+            {'posts': posts, 'tag': tag}
+        )
+
+    return render(
+        request,
+        'social/list.html',
+        {'posts': posts, 'tag': tag}
+    )
 
 
 
@@ -163,3 +182,20 @@ def post_like(request):
         'post_like_count': post_like_count,
     }
     return JsonResponse(response_data)
+
+
+@login_required
+@require_POST
+def post_save(request):
+    post_id = request.POST.get('post_id')
+    if post_id is not None:
+        post =Post.objects.get(id=post_id)
+        user = request.user
+        if user in post.save_by.all():
+            post.save_by.remove(user)
+            saved = False
+        else:
+            post.save_by.add(user)
+            saved = True
+        return JsonResponse({"saved":saved})
+    return JsonResponse({'error': 'Invalid post_id !'})

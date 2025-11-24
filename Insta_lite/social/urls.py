@@ -1,13 +1,14 @@
-from django.urls import path,include
+from django.urls import path, include
 from . import views
 from django.contrib.auth import views as auth_views
 
-app_name='social'
+app_name = 'social'
 
 urlpatterns = [
     path('create-post/', views.post_create, name='post-create'),
     path('posts/<int:id>/', views.post_detail, name='post_detail'),
     path('like/', views.post_like, name='like_post'),
+    path('save_post/', views.post_save, name='save_post'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('', views.profile, name='profile'),
@@ -47,9 +48,9 @@ urlpatterns = [
          name="password_reset_complete"),
 
     path('posts/', views.post_list, name='post-list'),
-   
+
     path('posts/<slug:tag_slug>/', views.post_list, name='post-list-by-tag'),
-    
+
     # path('posts/<int:id>/', views.post_detail, name='post-detail'),
-   
+
 ]

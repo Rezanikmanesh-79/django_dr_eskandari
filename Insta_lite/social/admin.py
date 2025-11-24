@@ -20,7 +20,7 @@ class UserAdmin(UserAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    readonly_fields = ['likes']
+    readonly_fields = ['likes', 'save_by']
     list_display = ['id', 'title', 'author', 'created', 'updated']
     search_fields = ['title', 'content']
     list_filter = ['created', 'author']
@@ -29,7 +29,10 @@ class PostAdmin(admin.ModelAdmin):
 
     def liked_users(self, obj):
         return ", ".join([user.username for user in obj.likes.all()])
-
     liked_users.short_description = "Liked by"
+
+    def saved_users(self, obj):
+        return ", ".join([user.username for user in obj.save_by.all()])
+    saved_users.short_description = "Saved by"
 
     # prepopulated_fields = {'slug': ('title',)}

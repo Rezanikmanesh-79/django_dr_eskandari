@@ -33,6 +33,7 @@ class Post(models.Model):
 
     likes = models.ManyToManyField(User, related_name='liked_posts', blank=True, verbose_name="لایک‌ها")
 
+    save_by=models.ManyToManyField(User, related_name='saved_posts', blank=True)
 
     def get_absolute_url(self):
         return reverse('social:post-detail', args=[self.id])
