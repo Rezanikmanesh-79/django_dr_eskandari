@@ -12,7 +12,7 @@ class User(AbstractUser):
     job = models.CharField(max_length=100, blank=True, null=True)
     phone = models.CharField(max_length=11, null=True, blank=True)
     date_joined = models.DateField(auto_now_add=True)
-    
+    follow=models.ManyToManyField('self', through='Contact', symmetrical=False, related_name='followers')
 
 class Post(models.Model):
     
@@ -60,5 +60,12 @@ class Post(models.Model):
         verbose_name_plural = 'پست ها'
 
 
-
-
+class Contact(models.Model):
+    user_from=models.ForeignKey(User,related_name='user_from',on_delete=models.CASCADE)
+    user_to=models.ForeignKey(User,related_name='user_to',on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-created']
+        unique_together = ('user_from', 'user_to')
+    def __str__(self):
+        return f'{self.user_from.username} follow {self.user_from.username}'
