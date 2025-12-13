@@ -1,0 +1,77 @@
+{% load static %}
+{% load thumbnail %}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+
+{% with user=request.user %}
+
+    <h1>پروفایل کاربر</h1>
+
+    <p><strong>نام کامل:</strong> {{ user.get_full_name|default:user.username }}</p>
+
+    {% if user.photo %}
+        <a href="{{ user.photo.url }}" target="_blank">
+            <img
+                src="{% thumbnail user.photo 150x150 crop='center' quality=85 %}"
+                alt="profile photo"
+            >
+        </a>
+    {% else %}
+        <img
+            src="{% static 'images/profile/avatar.png' %}"
+            alt="default avatar"
+            width="150"
+        >
+    {% endif %}
+
+    <hr>
+
+    <p><strong>Bio:</strong> {{ user.bio|default:'---' }}</p>
+    <p><strong>Job:</strong> {{ user.job|default:'---' }}</p>
+    <p><strong>Date of birth:</strong> {{ user.date_of_birth|default:'---' }}</p>
+
+{% endwith %}
+
+<hr>
+
+<h2>پست‌های ذخیره‌شده توسط کاربر</h2>
+
+{% if saved_posts %}
+    <ul>
+        {% for post in saved_posts %}
+            <li>
+                <a href="{{ post.get_absolute_url }}">
+                    {{ post.description|truncatewords:20|linebreaks }}
+                </a>
+                <br>
+                <small>
+                    Published at {{ post.date_posted }} by {{ post.author }}
+                </small>
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>هیچ پستی ذخیره نشده است.</p>
+{% endif %}
+
+<hr>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'social:my_tickets' %}">
+        مشاهده تیکت‌های من
+    </a>
+{% else %}
+    <a href="{% url 'social:find_tickets' %}">
+        یافتن تیکت با ایمیل
+    </a>
+{% endif %}
+
+</body>
+</html>

@@ -40,10 +40,14 @@ def user_logout(request):
     return HttpResponse('خارج شدید')
 
 
+@login_required(login_url='social:login')
 def profile(request):
-    return HttpResponse('وارد شدید')
-
-
+    user=request.user
+    saved_posts = user.saved_posts.all()
+    context = {
+        'saved_posts' : saved_posts,
+    }
+    return render(request, 'social/profile.html', context)
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -199,3 +203,8 @@ def post_save(request):
             saved = True
         return JsonResponse({"saved":saved})
     return JsonResponse({'error': 'Invalid post_id !'})
+
+@login_required
+def user_list(request):
+    users= User.objects.exclude(id=request.user.id)
+    return render(request, 'social/user-list.html', {'users': users})

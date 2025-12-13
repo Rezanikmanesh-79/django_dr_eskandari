@@ -6,7 +6,7 @@ app_name = 'social'
 
 urlpatterns = [
     path('create-post/', views.post_create, name='post-create'),
-    path('posts/<int:id>/', views.post_detail, name='post_detail'),
+    path('posts/<int:id>/', views.post_detail, name='post-detail'),
     path('like/', views.post_like, name='like_post'),
     path('save_post/', views.post_save, name='save_post'),
     path('login/', views.user_login, name='login'),
@@ -14,7 +14,7 @@ urlpatterns = [
     path('', views.profile, name='profile'),
     path('register/', views.register, name='register'),
     path('user/edit', views.edit_user, name='edit-user'),
-    path('ticket', views.ticket, name="ticket"),
+    path('ticket', views.ticket, name="my_tickets"),
     path(
         'password-change/',
         auth_views.PasswordChangeView.as_view(success_url='done'),

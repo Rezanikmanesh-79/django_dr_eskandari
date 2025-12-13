@@ -7,8 +7,12 @@ from taggit.managers import TaggableManager
 class User(AbstractUser):
     date_of_birth = models.DateField(blank=True, null=True)
     bio = models.TextField(null=True, blank=True)
-    photo = models.ImageField(upload_to='account_images/', blank=True,
-                              null=True)
+    photo = models.ImageField(
+        upload_to='account_images/',
+        blank=True,
+        null=True,
+        default='account_images/default.png'
+    )
     job = models.CharField(max_length=100, blank=True, null=True)
     phone = models.CharField(max_length=11, null=True, blank=True)
     date_joined = models.DateField(auto_now_add=True)
