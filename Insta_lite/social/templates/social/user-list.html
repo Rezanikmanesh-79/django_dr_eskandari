@@ -1,0 +1,9 @@
+{% load static %}
+{% load thumbnail %}
+
+{% for user in users %}
+    <a href="{{ user.get_absolute_url }}">
+        <img src="{% thumbnail user.photo 200x0 quality=90 %}" alt="{{ user.get_full_name }}">
+        <p>{{ user.username }}</p>
+    </a>
+{% endfor %}

@@ -1,0 +1,14 @@
+{% load static %}
+{% load thumbnail %}
+
+<div class="user-card">
+    <p>{{ user.username }}</p>
+    <img src="{% thumbnail user.photo 200x0 quality=90 %}" alt="{{ user.get_full_name }}">
+    <button class="follow-button" data-user-id="{{ user.id }}">
+        {% if request.user in user.followers.all %}
+            Unfollow
+        {% else %}
+            Follow
+        {% endif %}
+    </button>
+</div>

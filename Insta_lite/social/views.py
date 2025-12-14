@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from .models import Post
+from .models import Post,User
 from .forms import LoginForm, UserRegisterForm, UserEditForm, TicketForm, CreatePostForm
 from django.core.mail import send_mail
 from taggit.models import Tag
@@ -208,3 +208,12 @@ def post_save(request):
 def user_list(request):
     users= User.objects.exclude(id=request.user.id)
     return render(request, 'social/user-list.html', {'users': users})
+
+
+@login_required
+def user_detail(request, username):
+    user = get_object_or_404(User, username=username)
+    context = {
+        'user': user
+    }
+    return render(request, 'social/user_detail.html', context)
