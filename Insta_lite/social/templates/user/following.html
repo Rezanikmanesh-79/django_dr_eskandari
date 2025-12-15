@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}دنبال‌شده‌ها{% endblock %}
+
+{% block content %}
+
+<h3 class="mb-4">👤 دنبال‌شده‌ها</h3>
+
+{% if following %}
+    <div class="list-group">
+
+        {% for user in following %}
+            <a href="{% url 'social:user_detail' user.username %}"
+               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+
+                <div class="d-flex align-items-center">
+
+                    <!-- عکس پروفایل -->
+                    {% if user.photo %}
+                        <img src="{{ user.photo.url }}" 
+                             class="rounded-circle me-2" width="40" height="40">
+                    {% else %}
+                        <img src="{% static 'img/default-user.png' %}" 
+                             class="rounded-circle me-2" width="40" height="40">
+                    {% endif %}
+
+                    <div>
+                        <strong>{{ user.username }}</strong>
+
+                        {% if user.job %}
+                            <div class="small text-muted">{{ user.job }}</div>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+                <span class="text-muted">
+                    ➝
+                </span>
+
+            </a>
+        {% endfor %}
+
+    </div>
+
+{% else %}
+    <p class="text-center text-muted">
+        شما هیچ کاربری را دنبال نمی‌کنید.
+    </p>
+{% endif %}
+
+{% endblock %}
+<!-- ===================================================================== -->
+<!-- ===================================================================== -->

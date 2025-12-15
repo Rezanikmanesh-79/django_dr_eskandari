@@ -1,0 +1,55 @@
+{% extends 'parent/base.html'%}
+{% block title %}Post List{% endblock title %}
+
+{% block content %}
+    <h1>Post List</h1>
+    <br>
+    {% if tag %}
+        <h2>Posts tagged with "{{ tag.name }}"</h2>
+    {% endif %}
+    <ul id="post-list">
+    {% for post in posts %}
+        <li>
+            <a href="{% url 'social:post_detail' post.id %}">{{ post.title }}</a>
+            <p>{{ post.content }}</p>
+            <p>Author: {{ post.author.username }}</p>
+            <p>Created at: {{ post.created }}</p>
+            <p>Updated at: {{ post.updated }}</p>
+            <p>Tags:
+                {% for tag in post.tags.all %}
+                    <a href='{% url 'social:post-list-by-tag' tag.slug %}'>{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    No tags
+                {% endfor %}
+            </p>
+        </li>
+    {% empty %}
+        <li>No posts available.</li>
+    {% endfor %}
+</ul>
+
+<button id="load-more">بارگذاری بیشتر</button>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function () {
+        var page = 2;
+        $('#load-more').click(function () {   // ✅ use #load-more
+            $.ajax({
+                type: 'GET',
+                url: "{% if tag %}{% url 'social:post-list-by-tag' tag.slug %}{% else %}{% url 'social:post-list' %}{% endif %}" + "?page=" + page,
+                dataType: 'html',
+                success: function (data) {
+                    $('#post-list').append(data);   // ✅ now #post-list exists
+                    page += 1;
+                }
+            });
+        });
+    });
+</script>
+
+
+{% endblock content %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ویرایش پروفایل{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <h3 class="text-center mb-4">ویرایش اطلاعات پروفایل</h3>
+
+                <!-- نمایش خطاهای فرم (سطح کلی) -->
+                {% if user_form.non_field_errors %}
+                    <div class="alert alert-danger">{{ user_form.non_field_errors }}</div>
+                {% endif %}
+
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+
+                    <!-- تولید خودکار تمام فیلدهای فرم -->
+                    {% for field in user_form %}
+                        <div class="mb-3">
+
+                            <!-- لیبل فیلد -->
+                            <label class="form-label">{{ field.label }}</label>
+
+                            <!-- خود فیلد -->
+                            {{ field }}
+
+                            <!-- نمایش خطاهای فیلد -->
+                            {% for error in field.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+
+                    <!-- دکمه ذخیره -->
+                    <button type="submit" class="btn btn-success w-100">
+                        ذخیره تغییرات
+                    </button>
+                </form>
+
+                <!-- لینک بازگشت -->
+                <div class="text-center mt-3">
+                    <a href="{% url 'social:profile' %}" class="text-muted small">
+                        بازگشت به پروفایل
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+<!-- ===================================================================== -->
+<!-- ===================================================================== -->

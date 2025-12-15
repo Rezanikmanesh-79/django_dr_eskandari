@@ -1,0 +1,195 @@
+{% load static %}
+{% load thumbnail %}
+
+<p>{{ user.get_full_name }}
+    <button class="follow-button" data-user-id="{{ user.id }}">
+        {% if request.user in user.followers.all %}
+            UnFollow
+        {% else %}
+            Follow
+        {% endif %}
+    </button> 
+    {% if user.photo %}
+        <a href="{{ user.photo.url }}">
+            <img src="{% thumbnail user.photo 150x0 quality=90 %}">
+        </a>
+    {% else %}
+        <img src="{% static 'images/profile/avatar.png' %}" style="width: 150px">
+    {% endif %}
+
+</p>
+{% comment %} <p>
+    {% if request.user != user %}
+        <!-- Trigger Button -->
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#reportModal">
+            گزارش کاربر
+        </button>
+    {% endif %}
+</p>
+<!-- ✅ Add modal here -->
+<div class="modal fade" id="reportModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">گزارش کاربر</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <textarea id="report-reason" class="form-control" placeholder="دلیل گزارش را بنویسید..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button id="submit-report" class="btn btn-danger">ارسال گزارش</button>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+<p>Bio: {{ user.bio|default:'---' }}</p>
+<p>Job: {{ user.job|default:'---' }}</p>
+<p>Date of birth: {{ user.date_of_birth|default:'---' }}</p>
+{% comment %} <p> {% endcomment %}
+    {#    {% if user != request.user %}#}
+    {#        {% if blocked %}#}
+    {#            <a href="{% url 'social:unblock_user' user.username %}" class="btn btn-warning">رفع بلاک</a>#}
+    {#        {% else %}#}
+    {#            <a href="{% url 'social:block_user' user.username %}" class="btn btn-danger">بلاک</a>#}
+    {##}
+    {#        {% endif %}#}
+    {#        <a href="{% url 'social:report_user' user.username %}" class="btn btn-outline-danger">گزارش</a>#}
+    {#    {% endif %}#}
+    {% comment %} {% if request.user == user %}
+        <hr>
+        <h4>کاربرانی که شما بلاک کرده‌اید:</h4>
+        {% if blocked_by_you %}
+            <ul>
+                {% for u in blocked_by_you %}
+                    <li><a href="{{ u.get_absolute_url }}"> {{ u.username }}</a></li>
+                {% empty %}
+                    <li>شما کسی را بلاک نکرده‌اید.</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h4>کاربرانی که شما را بلاک کرده‌اند:</h4>
+        {% if blocked_you %}
+            <ul>
+                {% for u in blocked_you %}
+                    <li><a href="{{ u.get_absolute_url }}"> {{ u.username }}</a></li>
+                {% empty %}
+                    <li>هیچ کاربری شما را بلاک نکرده است.</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+
+{% if request.user != user %}
+    <button id="block-btn" class="btn btn-danger"
+            data-user-id="{{ user.id }}">
+        {% if is_blocked %}
+            رفع بلاک
+        {% else %}
+            بلاک کردن
+        {% endif %}
+    </button>
+{% endif %}
+</p> {% endcomment %}
+{% with total_followers=user.followers.count total_followings=user.following.count %}
+    <span class="followers-count">{{ total_followers }}<a href="{% url 'social:user_followers' user.username %}">Followers </a> {{ total_followers|pluralize }}</span>
+    <span class="following-count">{{ total_followings }}<a href="{% url 'social:user_following' user.username %}">Following </a>{{ total_followings|pluralize }}</span>
+{% endwith %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.follow-button').click(function () {
+            var button = $(this);
+            var user_id = button.data('user-id');
+            var csrfToken = '{{ csrf_token }}';
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "social:user_follow" %}',
+                data: {
+                    'id': user_id,
+                    'csrfmiddlewaretoken': csrfToken,
+                },
+                success: function (data) {
+                    if (data.follow !== undefined) {
+                        // Update button text
+                        if (data.follow) {
+                            button.text('UnFollow');
+                        } else {
+                            button.text('Follow');
+                        }
+
+                        // Update followers and followings count
+                        $('.followers-count').text(`${data.followers_count} Follower${data.followers_count !== 1 ? 's' : ''}`);
+                        $('.following-count').text(`${data.following_count} Following${data.following_count !== 1 ? 's' : ''}`);
+                    } else if (data.error) {
+                        alert(data.error);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX Error:', error);
+                }
+            });
+        });
+    });
+</script>
+
+{% comment %} <script>
+    document.getElementById("block-btn").addEventListener("click", function () {
+        const btn = this;
+        const userId = btn.getAttribute("data-user-id");
+
+        fetch("{% url 'social:toggle_block_user' %}", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": "{{ csrf_token }}",
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: "user_id=" + userId,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "ok") {
+                    if (data.action === "blocked") {
+                        btn.innerText = "رفع بلاک";
+                        btn.classList.remove("btn-danger");
+                        btn.classList.add("btn-secondary");
+                    } else {
+                        btn.innerText = "بلاک کردن";
+                        btn.classList.remove("btn-secondary");
+                        btn.classList.add("btn-danger");
+                    }
+                }
+            });
+    });
+</script> {% endcomment %}
+<!-- ✅ Add JavaScript after modal -->
+{% comment %} <script>
+    document.getElementById("submit-report").addEventListener("click", function () {
+        const reason = document.getElementById("report-reason").value.trim();
+
+        fetch("{% url 'social:report_user' %}", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": "{{ csrf_token }}",
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: "user_id={{ user.id }}&reason=" + encodeURIComponent(reason),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "ok") {
+                    alert("گزارش ارسال شد.");
+                    var modal = bootstrap.Modal.getInstance(document.getElementById("reportModal"));
+                    modal.hide();
+                } else {
+                    alert(data.message || "خطایی رخ داد.");
+                }
+            });
+    });
+</script>  {% endcomment %}

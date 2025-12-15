@@ -1,0 +1,10 @@
+{% block content %}
+<h2>Following</h2>
+<ul>
+    {% for user in following %}
+        <li><a href="{{ user.get_absolute_url }}"> {{ user.username }}</a></li>
+    {% empty %}
+        <li>کسی را دنبال نمی‌کند.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

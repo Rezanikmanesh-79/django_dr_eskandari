@@ -1,27 +1,87 @@
-<section class="py-4">
-    <div class="container">
-        <div class="row pb-4">
-            <div class="col-12">
-                <!-- Title -->
-                <h1 class="mb-0 h3">ثبت نام</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <!-- Chart START -->
-                <div class="card border h-100">
-                    <!-- Card body -->
-                    <div class="card-body">
-                        <!-- Form START -->
-                        <form method="post">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <button class="btn btn-primary" type="submit">ثبت نام</button>
-                        </form>                        <!-- Form END -->
-                    </div>
-                </div><!-- Chart END -->
-            </div>
-        </div>
-    </div>
-</section>
+{% extends "base.html" %}
+{% load static %}
 
+{% block title %}ثبت‌نام کاربر جدید{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <h3 class="text-center mb-4">ایجاد حساب کاربری جدید</h3>
+
+                <!-- نمایش خطاهای سطح فرم -->
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    <!-- ---------------------------
+                         نمایش فیلدهای فرم به صورت دستی
+                    -------------------------------- -->
+                    
+                    <!-- نام کاربری -->
+                    <div class="mb-3">
+                        <label class="form-label">نام کاربری</label>
+                        {{ form.username }}
+                        {% for error in form.username.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- ایمیل -->
+                    <div class="mb-3">
+                        <label class="form-label">ایمیل</label>
+                        {{ form.email }}
+                        {% for error in form.email.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- رمز عبور -->
+                    <div class="mb-3">
+                        <label class="form-label">رمز عبور</label>
+                        {{ form.password }}
+                        {% for error in form.password.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- تکرار رمز عبور -->
+                    <div class="mb-3">
+                        <label class="form-label">تکرار رمز عبور</label>
+                        {{ form.password2 }}
+                        {% for error in form.password2.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- دکمه ثبت‌نام -->
+                    <button class="btn btn-success w-100" type="submit">
+                        ثبت‌نام
+                    </button>
+
+                </form>
+
+                <!-- لینک صفحه ورود -->
+                <div class="text-center mt-3">
+                    <small>
+                        حساب دارید؟
+                        <a href="{% url 'social:login' %}">ورود</a>
+                    </small>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

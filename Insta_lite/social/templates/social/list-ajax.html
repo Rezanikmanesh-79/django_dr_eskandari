@@ -1,23 +1,64 @@
+{% load static %}
+
 {% for post in posts %}
-<li class="post-item post" data-post-id="{{ post.id }}" id="post-{{ post.id }}">
 
-    <a href="{% url 'social:post_detail' post.id %}">{{ post.title }}</a>
+    <div class="card mb-4 shadow-sm">
 
-    <p>{{ post.content|truncatewords:40 }}</p>
+        <div class="card-body">
 
-    <p>Author: {{ post.author.username }}</p>
-    <p>Created: {{ post.created|date:"Y-m-d H:i" }}</p>
+            <!-- عنوان پست -->
+            <h4>
+                <a href="{% url 'social:post_detail' post.id %}">
+                    {{ post.title }}
+                </a>
+            </h4>
 
-    <!-- LIKE -->
-    <button class="like-button">
-        {% if user in post.likes.all %}Unlike{% else %}Like{% endif %}
-    </button>
-    <span class="likes-count">{{ post.likes.count }}</span> Likes
+            <!-- نویسنده + تاریخ -->
+            <p class="text-muted small mb-2">
+                نوشته شده توسط 
+                <strong>
+                    <a href="{% url 'social:user_detail' post.author.username %}">
+                        {{ post.author.username }}
+                    </a>
+                </strong>
+                در {{ post.created|date:"Y/m/d H:i" }}
+            </p>
 
-    <!-- SAVE -->
-    <button class="save-button">
-        {% if user in post.save_by.all %}Unsave{% else %}Save{% endif %}
-    </button>
+            <!-- خلاصه متن -->
+            <p>{{ post.content|truncatewords:30 }}</p>
 
-</li>
+            <!-- تگ‌ها -->
+            {% if post.tags.all %}
+                <p class="mb-1">
+                    {% for tag in post.tags.all %}
+                        <a href="{% url 'social:post-list-by-tag' tag.slug %}" 
+                           class="badge bg-secondary text-light mx-1">
+                            #{{ tag.name }}
+                        </a>
+                    {% endfor %}
+                </p>
+            {% endif %}
+
+            <hr>
+
+            <!-- دکمه‌های لایک و ذخیره (AJAX-ready) -->
+            <div class="d-flex justify-content-between">
+
+                <button class="btn btn-sm btn-outline-primary like-btn"
+                        data-post-id="{{ post.id }}">
+                    👍 لایک ({{ post.likes.count }})
+                </button>
+
+                <button class="btn btn-sm btn-outline-success save-btn"
+                        data-post-id="{{ post.id }}">
+                    💾 ذخیره
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+{% empty %}
+    <p class="text-muted text-center">پستی برای نمایش موجود نیست.</p>
 {% endfor %}

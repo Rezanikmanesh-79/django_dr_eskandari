@@ -1,77 +1,100 @@
+{% extends "base.html" %}
 {% load static %}
-{% load thumbnail %}
 
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-</head>
-<body>
+{% block title %}پروفایل من{% endblock %}
 
-{% with user=request.user %}
+{% block content %}
 
-    <h1>پروفایل کاربر</h1>
+<div class="row justify-content-center">
+    <div class="col-md-8">
 
-    <p><strong>نام کامل:</strong> {{ user.get_full_name|default:user.username }}</p>
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
 
-    {% if user.photo %}
-        <a href="{{ user.photo.url }}" target="_blank">
-            <img
-                src="{% thumbnail user.photo 150x150 crop='center' quality=85 %}"
-                alt="profile photo"
-            >
-        </a>
-    {% else %}
-        <img
-            src="{% static 'images/profile/avatar.png' %}"
-            alt="default avatar"
-            width="150"
-        >
-    {% endif %}
+                <div class="d-flex align-items-center">
 
-    <hr>
+                    <!-- عکس پروفایل -->
+                    {% if request.user.photo %}
+                        <img src="{{ request.user.photo.url }}" 
+                             class="rounded-circle me-3" 
+                             width="80" height="80">
+                    {% else %}
+                        <img src="{% static 'img/default-user.png' %}" 
+                             class="rounded-circle me-3" 
+                             width="80" height="80">
+                    {% endif %}
 
-    <p><strong>Bio:</strong> {{ user.bio|default:'---' }}</p>
-    <p><strong>Job:</strong> {{ user.job|default:'---' }}</p>
-    <p><strong>Date of birth:</strong> {{ user.date_of_birth|default:'---' }}</p>
+                    <div>
+                        <h3 class="mb-1">{{ request.user.username }}</h3>
 
-{% endwith %}
+                        {% if request.user.job %}
+                            <p class="text-muted small mb-1">{{ request.user.job }}</p>
+                        {% endif %}
 
-<hr>
+                        {% if request.user.bio %}
+                            <p class="text-muted small">{{ request.user.bio|truncatewords:15 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
 
-<h2>پست‌های ذخیره‌شده توسط کاربر</h2>
+                <hr>
 
-{% if saved_posts %}
-    <ul>
-        {% for post in saved_posts %}
-            <li>
-                <a href="{{ post.get_absolute_url }}">
-                    {{ post.description|truncatewords:20|linebreaks }}
-                </a>
-                <br>
-                <small>
-                    Published at {{ post.date_posted }} by {{ post.author }}
-                </small>
-            </li>
-            <br>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>هیچ پستی ذخیره نشده است.</p>
-{% endif %}
+                <div class="d-flex justify-content-between">
 
-<hr>
+                    <a href="{% url 'social:edit-user' %}" class="btn btn-outline-primary w-50 me-2">
+                        ویرایش پروفایل ✏️
+                    </a>
 
-{% if user.is_authenticated %}
-    <a href="{% url 'social:my_tickets' %}">
-        مشاهده تیکت‌های من
-    </a>
-{% else %}
-    <a href="{% url 'social:find_tickets' %}">
-        یافتن تیکت با ایمیل
-    </a>
-{% endif %}
+                    <a href="{% url 'social:post-create' %}" class="btn btn-primary w-50">
+                        ایجاد پست جدید ➕
+                    </a>
 
-</body>
-</html>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- لیست پست‌های ذخیره‌شده -->
+        <h4 class="mb-3">پست‌های ذخیره‌شده</h4>
+
+        {% if saved_posts %}
+            {% for post in saved_posts %}
+                <div class="card mb-3 shadow-sm">
+
+                    <div class="card-body">
+
+                        <h5 class="mb-1">
+                            <a href="{% url 'social:post_detail' post.id %}">
+                                {{ post.title }}
+                            </a>
+                        </h5>
+
+                        <p class="text-muted small">
+                            نویسنده:
+                            <a href="{% url 'social:user_detail' post.author.username %}">
+                                {{ post.author.username }}
+                            </a>
+                            — {{ post.created|date:"Y/m/d" }}
+                        </p>
+
+                        <p>{{ post.content|truncatewords:20 }}</p>
+
+                        <a href="{% url 'social:post_detail' post.id %}" 
+                           class="btn btn-sm btn-outline-primary">
+                            مشاهده پست
+                        </a>
+
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <p class="text-muted">شما هنوز هیچ پستی را ذخیره نکرده‌اید.</p>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
+<!-- ===================================================================== -->
+<!-- ===================================================================== -->

@@ -1,0 +1,68 @@
+{% load static %}  
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <!-- ================================
+         تنظیمات پایه HTML و متا تگ‌ها
+    ================================== -->
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- عنوان صفحه -->
+    <title>{% block title %}شبکه اجتماعی آموزشی{% endblock %}</title>
+
+    <!-- ================================
+         بارگذاری Bootstrap و فایل CSS پروژه
+    ================================== -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <!-- امکان افزودن CSS اختصاصی هر صفحه -->
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- ================================
+         ناوبار (منوی بالای سایت)
+         به صورت include جداگانه
+    ================================== -->
+    {% include 'includes/navbar.html' %}
+
+    <!-- ================================
+         سیستم پیام‌رسان جنگو (messages)
+         برای نمایش پیام‌های موفقیت، خطا و ...
+    ================================== -->
+    <div class="container mt-3">
+        {% include 'includes/messages.html' %}
+    </div>
+
+    <!-- ================================
+         محتوای اصلی صفحات
+    ================================== -->
+    <main class="container mt-4">
+        {% block content %}
+        <!-- هر صفحه محتوای مخصوص خود را اینجا قرار می‌دهد -->
+        {% endblock %}
+    </main>
+
+    <!-- ================================
+         فوتر سایت (اختیاری)
+    ================================== -->
+    <footer class="text-center py-3 mt-5 text-muted">
+        <small>© شبکه اجتماعی آموزشی - {{ now|date:"Y" }}</small>
+    </footer>
+
+    <!-- ================================
+         بارگذاری فایل‌های JS
+    ================================== -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- امکان افزودن JS اختصاصی هر صفحه -->
+    {% block extra_js %}{% endblock %}
+
+</body>
+</html>

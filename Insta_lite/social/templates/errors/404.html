@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}صفحه مورد نظر یافت نشد{% endblock %}
+
+{% block content %}
+
+<div class="text-center my-5">
+
+    <h1 class="display-4 text-danger">404</h1>
+
+    <p class="lead mb-4">متأسفیم، صفحه‌ای که به دنبال آن بودید یافت نشد.</p>
+
+    <img src="{% static 'img/404.png' %}" 
+         class="img-fluid mb-4" 
+         style="max-width: 300px;">
+
+    <p class="text-muted mb-4">
+        ممکن است آدرس را اشتباه وارد کرده باشید، یا این صفحه حذف شده باشد.
+    </p>
+
+    <a href="{% url 'social:post-list' %}" class="btn btn-primary">
+        بازگشت به صفحه اصلی
+    </a>
+
+</div>
+
+{% endblock %}
+<!-- ===================================================================== -->
+<!-- ===================================================================== -->

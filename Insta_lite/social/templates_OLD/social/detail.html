@@ -1,0 +1,94 @@
+{% extends 'parent/base.html'%}
+{% block title %}{{ post.title }}{% endblock title %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <div class="post" data-post-id="{{ post.id }}">
+    <p>{{ post.content }}</p>
+    <p>Author: {{ post.author.username }}</p>
+    <p>Created at: {{ post.created }}</p>
+    <p>Updated at: {{ post.updated }}</p>
+    <p>Tags: 
+        {% for tag in post.tags.all %}
+            <a href='{% url 'social:post-list-by-tag' tag.slug %}'>{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            No tags
+        {% endfor %}
+    </p>
+    <br>
+    <button id="like-button" class="like-button">
+        {% if user in post.likes.all %}
+            Unlike
+        {% else %}
+            Like
+        {% endif %}
+        </button>
+        <span id="like-count">{{ post.likes.count }}</span> Likes
+
+    <br><br>
+    <button id="save-post" class="save-post">
+        {% if user in post.saved_by.all %}
+            Unsave
+        {% else %}
+            Save
+        {% endif %}
+    </button>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.like-button').click(function () {
+            var post_id = $(this).closest('.post').data('post-id');
+            var button = $(this);
+            var csrfToken = '{{ csrf_token }}';
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'social:like_post' %}",
+                data: {
+                    'post_id': post_id,
+                    'csrfmiddlewaretoken': csrfToken
+                },
+                success: function (data) {
+                    if (data.liked) {
+                        button.text('Unlike');
+                    } else {
+                        button.text('Like');
+                    }
+                    $('#like-count').text(data.post_like_count);
+                },
+                error: function (xhr, status, error) {
+                    alert("An error occurred: " + error);
+                }
+            });
+        });
+
+       $('.save-post').click(function () {
+            var post_id = $(this).closest('.post').data('post-id'); // Added to retrieve post_id
+            var button = $(this);
+            var csrfToken = '{{ csrf_token }}'; // Optional for clarity
+            $.ajax({
+                type: "POST",
+                url: "{% url 'social:save_post' %}",
+                data: {
+                    'csrfmiddlewaretoken': csrfToken,
+                    'post_id': post_id
+                },
+                success: function (data) {
+                    if (data.saved) {
+                        button.text("Unsave");
+                    } else {
+                        button.text("Save");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("An error occurred: " + error);
+                }
+            });
+        }); 
+    });
+</script>
+{% endblock content %}

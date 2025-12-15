@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}دسترسی غیرمجاز{% endblock %}
+
+{% block content %}
+
+<div class="text-center my-5">
+
+    <h1 class="display-4 text-warning">403</h1>
+
+    <p class="lead mb-4">شما اجازه دسترسی به این صفحه را ندارید.</p>
+
+    <img src="{% static 'img/403.png' %}" 
+         class="img-fluid mb-4" 
+         style="max-width: 300px;">
+
+    <p class="text-muted mb-4">
+        ممکن است مالک صفحه شما را محدود کرده باشد.
+    </p>
+
+    <a href="{% url 'social:post-list' %}" class="btn btn-primary">
+        بازگشت به صفحه اصلی
+    </a>
+
+</div>
+
+{% endblock %}
+<!-- ===================================================================== -->
+<!-- ===================================================================== -->

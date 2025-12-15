@@ -1,0 +1,28 @@
+<h1> ارسال تیکت به پشتیبانی </h1>
+<div>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">ارسال</button>
+</form>
+</div>
+
+<div>
+    <a href="{% url 'social:profile' %}">بازگشت به پروفایل</a> 
+</div>
+
+{% if form.errors %}
+    لطفا خطاهای زیر را اصلاح کنید!
+    <br>
+    {% for field in form %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                {{ field.label }} : {{ error }}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% if form.non_field_errors %}
+    {{ form.non_field_errors }}
+{% endif %}

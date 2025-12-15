@@ -1,28 +1,55 @@
-<h1> ارسال تیکت به پشتیبانی </h1>
-<div>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">ارسال</button>
-</form>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ارسال تیکت{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <h3 class="text-center mb-4">ارسال پیام / تیکت</h3>
+
+                <!-- پیام موفقیت -->
+                {% if sent %}
+                    <div class="alert alert-success text-center">
+                        پیام شما با موفقیت ارسال شد. ✉️  
+                        به زودی با شما تماس گرفته می‌شود.
+                    </div>
+                {% endif %}
+
+                <!-- فرم -->
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class="mb-3">
+                            
+                            <!-- لیبل -->
+                            <label class="form-label">{{ field.label }}</label>
+
+                            <!-- فیلد -->
+                            {{ field }}
+
+                            <!-- خطاهای فیلد -->
+                            {% for error in field.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+
+                    <button class="btn btn-primary w-100" type="submit">
+                        ارسال پیام
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
 </div>
 
-<div>
-    <a href="{% url 'social:profile' %}">بازگشت به پروفایل</a> 
-</div>
-
-{% if form.errors %}
-    لطفا خطاهای زیر را اصلاح کنید!
-    <br>
-    {% for field in form %}
-        {% if field.errors %}
-            {% for error in field.errors %}
-                {{ field.label }} : {{ error }}
-            {% endfor %}
-        {% endif %}
-    {% endfor %}
-{% endif %}
-
-{% if form.non_field_errors %}
-    {{ form.non_field_errors }}
-{% endif %}
+{% endblock %}

@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+        <!-- لوگو یا نام سایت -->
+        <a class="navbar-brand fw-bold" href="{% url 'social:profile' %}">
+            شبکه اجتماعی آموزشی
+        </a>
+
+        <!-- دکمه برای حالت موبایل -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+
+            <!-- منوی سمت راست -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <!-- صفحه اصلی (لیست پست‌ها) -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'social:post-list' %}">پست‌ها</a>
+                </li>
+
+                <!-- کاربران -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'social:user-list' %}">کاربران</a>
+                </li>
+
+                <!-- ایجاد پست -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'social:post-create' %}">ایجاد پست</a>
+                </li>
+
+                <!-- ارسال تیکت -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'social:ticket' %}">تیکت</a>
+                </li>
+            </ul>
+
+            <!-- منوی سمت چپ: وضعیت ورود -->
+            <ul class="navbar-nav ms-auto">
+
+                {% if user.is_authenticated %}
+                    <!-- اگر کاربر وارد شده باشد -->
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'social:profile' %}">
+                            {{ user.username }} 👤
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="{% url 'social:logout' %}">
+                            خروج
+                        </a>
+                    </li>
+
+                {% else %}
+                    <!-- اگر کاربر وارد نشده باشد -->
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'social:login' %}">ورود</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-success" href="{% url 'social:register' %}">ثبت‌نام</a>
+                    </li>
+
+                {% endif %}
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<!-- ===================================================================== -->
+<!-- ===================================================================== -->
+<!-- ===================================================================== -->

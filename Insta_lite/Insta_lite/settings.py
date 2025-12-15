@@ -39,9 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'easy_thumbnails',
     'taggit',
-    
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -128,10 +127,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-STATICFILES_DIRS = [BASE_DIR / 'static']
-MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+
+STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
@@ -160,4 +158,13 @@ EMAIL_HOST_PASSWORD = 'eboo iqqd zzmh tjim '
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USED_SSL = False
 
+
 THUMBNAIL_DEBUG = True
+
+
+# DEBUG = False
+ALLOWED_HOSTS = ["*"]
+
+# مسیر templateهای خطا
+# (Django به صورت خودکار دنبال 404.html و 500.html می‌گردد)
+# TEMPLATES[0]['DIRS'].append(BASE_DIR / 'templates/errors')

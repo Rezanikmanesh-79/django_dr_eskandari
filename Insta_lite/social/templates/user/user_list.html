@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}لیست کاربران{% endblock %}
+
+{% block content %}
+
+<h3 class="mb-4">👥 لیست کاربران</h3>
+
+<!-- اگر لیست کاربران خالی بود -->
+{% if not users %}
+    <p class="text-center text-muted">هیچ کاربری یافت نشد.</p>
+{% else %}
+
+    <div class="list-group">
+
+        {% for user in users %}
+            <a href="{% url 'social:user_detail' user.username %}" 
+               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+
+                <div>
+                    <!-- نام کاربری -->
+                    <strong>{{ user.username }}</strong>
+
+                    <!-- شغل (اختیاری) -->
+                    {% if user.job %}
+                        <span class="text-muted small d-block">
+                            {{ user.job }}
+                        </span>
+                    {% endif %}
+                </div>
+
+                <!-- آیکن رفتن به پروفایل -->
+                <span class="text-muted">
+                    ➝
+                </span>
+
+            </a>
+        {% endfor %}
+
+    </div>
+
+{% endif %}
+
+{% endblock %}
+<!-- ===================================================================== -->
+<!-- ===================================================================== -->

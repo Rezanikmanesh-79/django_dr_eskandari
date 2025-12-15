@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}پروفایل {{ user.username }}{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+
+                <!-- نام و عکس کاربر -->
+                <div class="d-flex align-items-center mb-3">
+
+                    <!-- عکس کاربر -->
+                    {% if user.photo %}
+                        <img src="{{ user.photo.url }}" class="rounded-circle me-3" width="70" height="70">
+                    {% else %}
+                        <img src="{% static 'img/default-user.png' %}" 
+                             class="rounded-circle me-3" width="70" height="70">
+                    {% endif %}
+
+                    <div>
+                        <h3 class="mb-0">{{ user.username }}</h3>
+
+                        {% if user.job %}
+                            <div class="text-muted small">{{ user.job }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- اطلاعات شخصی -->
+                <div class="mb-3">
+                    {% if user.bio %}
+                        <p>{{ user.bio|linebreaks }}</p>
+                    {% else %}
+                        <p class="text-muted">این کاربر بیوگرافی خود را وارد نکرده است.</p>
+                    {% endif %}
+
+                    {% if user.date_of_birth %}
+                        <p class="small text-muted">تاریخ تولد: {{ user.date_of_birth }}</p>
+                    {% endif %}
+                </div>
+
+                <hr>
+
+                <!-- شمارنده‌ها -->
+                <div class="d-flex justify-content-between mb-3 text-center">
+
+                    <a href="{% url 'social:user_followers' user.username %}" class="text-decoration-none">
+                        <strong>{{ user.followers.count }}</strong>
+                        <div class="small text-muted">دنبال‌کنندگان</div>
+                    </a>
+
+                    <a href="{% url 'social:user_following' user.username %}" class="text-decoration-none">
+                        <strong>{{ user.following.count }}</strong>
+                        <div class="small text-muted">دنبال‌شده‌ها</div>
+                    </a>
+                </div>
+
+                <!-- دکمه‌های تعامل اجتماعی -->
+                <div class="d-flex justify-content-between">
+
+                    <!-- دکمه Follow / Unfollow -->
+                    <button class="btn btn-primary w-50 me-2 follow-btn"
+                            data-user-id="{{ user.id }}">
+                        دنبال کردن / لغو دنبال
+                    </button>
+
+                    <!-- دکمه Block / Unblock -->
+                    <button class="btn btn-outline-danger w-50 block-btn"
+                            data-user-id="{{ user.id }}">
+                        مسدود / آزادسازی
+                    </button>
+
+                </div>
+
+                <!-- دکمه گزارش -->
+                <button class="btn btn-warning w-100 mt-3 report-btn"
+                        data-user-id="{{ user.id }}">
+                    گزارش کاربر
+                </button>
+
+            </div>
+        </div>
+
+        <!-- ===============================
+             لیست پست‌های کاربر (خلاصه)
+        ================================ -->
+        <h4 class="mb-3">پست‌های {{ user.username }}</h4>
+
+        {% for post in user.user_posts.all %}
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+
+                    <h5>
+                        <a href="{% url 'social:post_detail' post.id %}">
+                            {{ post.title }}
+                        </a>
+                    </h5>
+
+                    <p class="text-muted small">{{ post.created|date:"Y/m/d H:i" }}</p>
+
+                    <p>{{ post.content|truncatewords:20 }}</p>
+
+                    <a class="btn btn-sm btn-outline-primary"
+                       href="{% url 'social:post_detail' post.id %}">
+                        مشاهده پست
+                    </a>
+
+                </div>
+            </div>
+
+        {% empty %}
+            <p class="text-muted">این کاربر هنوز پستی منتشر نکرده است.</p>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/user-actions.js' %}"></script>
+{% endblock %}
+<!-- ===================================================================== -->
+<!-- ===================================================================== -->

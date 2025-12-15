@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}خطای سرور{% endblock %}
+
+{% block content %}
+
+<div class="text-center my-5">
+
+    <h1 class="display-4 text-danger">500</h1>
+
+    <p class="lead mb-4">
+        متأسفانه مشکلی در سرور رخ داده است.  
+        لطفاً دوباره تلاش کنید یا کمی بعد بازگردید.
+    </p>
+
+    <img src="{% static 'img/500.png' %}" 
+         class="img-fluid mb-4" 
+         style="max-width: 300px;">
+
+    <a href="{% url 'social:post-list' %}" class="btn btn-primary">
+        بازگشت به صفحه اصلی
+    </a>
+
+</div>
+
+{% endblock %}
+<!-- ===================================================================== -->
+<!-- ===================================================================== -->

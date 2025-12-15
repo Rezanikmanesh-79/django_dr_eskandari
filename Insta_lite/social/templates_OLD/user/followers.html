@@ -1,0 +1,11 @@
+
+{% block content %}
+<h2>Follower(s)</h2>
+<ul>
+    {% for follower in followers %}
+        <li><a href="{{ follower.get_absolute_url }}"> {{ follower.username }}</a></li>
+    {% empty %}
+        <li>هیچ فالووری ندارد.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
