@@ -1,0 +1,47 @@
+{% extends "parent/base.html" %}
+{% load static %}
+
+{% block title %}{{ block.super }} - Product List{% endblock %}
+
+{% block extra_head %}
+    {# Use single-line comments for short notes #}
+    {% comment %} <link rel="stylesheet" href="{% static 'css/base.css' %}" /> {% endcomment %}
+{% endblock %}
+
+{% block content %}
+<div class="product-list-header">
+    {% if category %}
+        <h1>Products in {{ category.name }}</h1>
+    {% else %}
+        <h1>Our Products</h1>
+    {% endif %}
+</div>
+
+<nav class="category-sidebar">
+    <ul>
+        <li class="category">
+            <a href="{% url 'shop:product_list' %}">All</a>
+        </li>
+        {% for cat in categories %}
+        <li class="category">
+            <a href="{% url 'shop:product_list_by_category' cat.slug %}">{{ cat.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+
+<div class="product-container">
+    <div class="row">
+        {% for product in products %}
+            <div class="product-item">
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description|truncatewords:20 }}</p>
+                <span class="price">${{ product.price|floatformat:2 }}</span>
+                <a href="{{ product.get_absolute_url }}">View Details</a>
+            </div>
+        {% empty %}
+            <p>No products available in this category.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

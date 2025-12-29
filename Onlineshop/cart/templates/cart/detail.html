@@ -1,0 +1,157 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load humanize %}  <!-- برای جداکننده هزارگان -->
+
+{% block title %}جزئیات سبد خرید{% endblock %}
+
+{% block content %}
+<div class="heading">
+    <h1>جزئیات سبد خرید</h1>
+</div>
+
+<div class="cart-container">
+    {% for item in cart %}
+    <div class="product-item" data-item-id="{{ item.product.id }}">
+        <a href="{% url 'shop:product-detail' item.product.id item.product.slug %}">
+            <img src="{{ item.product.images.first.image_file.url }}" alt="{{ item.product.name }}" />
+        </a>
+        <div class="product-details">
+            <h2>
+                <a href="{% url 'shop:product-detail' item.product.id item.product.slug %}">
+                    نام محصول: {{ item.product.name }}
+                </a>
+            </h2>
+            <p>تعداد: {{ item.quantity }}</p>
+            <p>قیمت واحد: {{ item.price|intcomma }} تومان</p>
+            <p>جمع این ردیف: {{ item.total_price|intcomma }} تومان</p>
+
+            <div class="actions">
+                <button type="button" class="quantity-add">+</button>
+                <button type="button" class="quantity-decrease">-</button>
+                <button type="button" class="remove-item">حذف</button>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>سبد خرید شما خالی است.</p>
+    {% endfor %}
+
+    <h3>قیمت نهایی (با هزینه ارسال): {{ cart.get_total_price|intcomma }} تومان</h3>
+
+    <!-- دکمه‌های چک‌اوت -->
+    <div class="checkout-buttons">
+        {% comment %} <a href="{% url 'order:verify-phone' %}">ادامه روند خرید</a> {% endcomment %}
+        <a href="{% url 'shop:product_list' %}">بازگشت به فروشگاه</a>
+    </div>
+</div>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+
+<script>
+  $(document).ready(function () {
+    // Debug: Check if we can find the product-item elements
+    console.log("Product items found:", $(".product-item").length);
+    $(".product-item").each(function (index) {
+      console.log("Item", index, "data:", $(this).data());
+    });
+
+    $(".quantity-add").click(function () {
+      var productItem = $(this).closest(".product-item");
+      console.log("Closest product-item:", productItem);
+      console.log("Product item data:", productItem.data());
+      var itemId = productItem.data("item-id");
+      console.log("Extracted item ID:", itemId);
+      updateQuantity(itemId, "add");
+    });
+
+    $(".quantity-decrease").click(function () {
+      var productItem = $(this).closest(".product-item");
+      var itemId = productItem.data("item-id");
+      console.log("Decrease - item ID:", itemId);
+      updateQuantity(itemId, "decrease");
+    });
+
+    // Remove item functionality
+    $(".remove-item").click(function () {
+      var productItem = $(this).closest(".product-item");
+      var itemId = productItem.data("item-id");
+      console.log("Remove - item ID:", itemId);
+      removeItem(itemId);
+    });
+    function removeItem(itemId) {
+      console.log("Remove - Item ID:", itemId);
+      if (!itemId) {
+        alert("Could not find product ID! Check console for details.");
+        return;
+      }
+      $.ajax({
+        url: "{% url 'cart:remove_item' %}",
+        method: "POST",
+        data: {
+          item_id: itemId,
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+        success: function (response) {
+          console.log("Success response:", response);
+          if (response.success) {
+            $("#item-count").text(response.item_count);
+            $("#total-price").text(response.total_price);
+            $("#item.total-price").text(response.item_total_price);
+            $("#item.final-price").text(response.item_final_price);
+            $('.product-item[data-item-id="' + itemId + '"]').remove();
+            location.reload();
+          } else {
+            alert(
+              "Error removing item: " + (response.error || "Unknown error")
+            );
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error("Error removing item:", error);
+          console.error("XHR response:", xhr.responseText);
+          alert("Error removing item. Check console for details.");
+        },
+      });
+    }
+    // end remove item functionality
+    // AJAX function to update quantity
+    function updateQuantity(itemId, action) {
+      console.log("Final - Item ID:", itemId, "Action:", action);
+
+      if (!itemId) {
+        alert("Could not find product ID! Check console for details.");
+        return;
+      }
+
+      $.ajax({
+        url: "{% url 'cart:update_quantity' %}",
+        method: "POST",
+        data: {
+          item_id: itemId,
+          action: action,
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+        success: function (response) {
+          console.log("Success response:", response);
+          if (response.success) {
+            location.reload();
+          } else {
+            alert(
+              "Error updating quantity: " + (response.error || "Unknown error")
+            );
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error("Error updating quantity:", error);
+          console.error("XHR response:", xhr.responseText);
+          alert("Error updating quantity. Check console for details.");
+        },
+      });
+    }
+  });
+</script>
+{% endblock %}

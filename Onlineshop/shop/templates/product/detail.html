@@ -1,0 +1,68 @@
+{% extends 'parent/base.html' %} {% load static %} {% block title %} product {{
+product.name }} {% endblock %} {% block content %}
+<div class="heading">
+  <h1>جزییات محصول: {{ product.name }}</h1>
+</div>
+
+<div class="product-details">
+  <h2>نام محصول:{{ product.name }}</h2>
+  <p>دسته بندی: {{ product.category }}</p>
+  {% comment %} <p>قیمت: {{ product.price }}</p> {% endcomment %}
+  <!-- قیمت با تخفیف -->
+  <span class="current-price">{{ product.get_display_price }} تومان</span>
+
+  <!-- اگر تخفیف داره، قیمت قبلی خط‌خورده + درصد تخفیف -->
+  {% if product.get_discount_percentage %}
+  <del class="old-price">{{ product.price }} تومان</del>
+  <span class="discount-badge">-{{ product.get_discount_percentage }}%</span>
+  {% endif %}
+  <p>موجودی: {{ product.in_stock }}</p>
+  <p>توضیحات: {{ product.description }}</p>
+  <div>
+    <ul>
+      {% for feature in product.features.all %}
+      <li>{{ feature }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div>
+    {% for image in product.images.all %}
+    <img src="{{ image.image.url }}" />
+    {% endfor %}
+  </div>
+</div>
+<br />
+
+<br />
+<button type="button" id="add-to-cart-button">Add to cart</button>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+
+<script>
+  $(function () {
+    $("#add-to-cart-button").click(function () {
+      $.ajax({
+        url: "{% url 'cart:cart_add' product.id %}",
+        type: "POST",
+        data: {
+          quantity: 1,
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+        success: function (data) {
+          $("#item-count").text(data.item_count);
+          $("#total-price").text(data.total_price);
+          alert("Product added to cart!");
+        },
+        error: function (xhr) {
+          alert("Error: " + xhr.responseText);
+        },
+      });
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop! | {% block title %}{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    
+    {% block extra_head %}
+    {% endblock %}
+</head>
+<body>
+    {% include 'partials/header.html' %}
+    {% include 'partials/navigation.html' %}
+
+    <main>
+        {% block content %}
+        {# Child templates will inject their content here #}
+        {% endblock %}
+    </main>
+
+    {% include 'partials/footer.html' %}
+</body>
+</html>
